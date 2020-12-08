@@ -9,4 +9,4 @@ class Profile extends Model{
 	}
 }
 
-module.exports = User;
+module.exports = Profile;
