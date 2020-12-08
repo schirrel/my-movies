@@ -1,0 +1,22 @@
+body, html {
+    margin: 0;
+    padding:0;
+}
+html, body {
+    margin: 0 auto;
+    }
+.text-center {
+    text-align: center;
+}
+
+.v-notices .v-toast .v-toast-text {
+    font-size: 1.5rem !important;
+}
+
+.footer {
+    padding: 8rem 0 2rem
+}
+
+.footer .copyright {
+    padding-right: 6rem
+}
