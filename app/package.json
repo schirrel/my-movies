@@ -48,10 +48,5 @@
     "last 2 versions",
     "not ie <= 8",
     "not dead"
-  ],
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  }
+  ]
 }

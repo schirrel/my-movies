@@ -1,0 +1,27 @@
+{
+  "name": "my-movies",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "echo \"Started\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/schirrel/my-movies.git"
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/schirrel/my-movies/issues"
+  },
+  "homepage": "https://github.com/schirrel/my-movies#readme"
+}
