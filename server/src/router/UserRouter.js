@@ -7,11 +7,15 @@ this.service = new UserService();
 router.post('/', async (req, res) => {
 	let dto = req.body;
 
-	let entity = await  this.service.save(dto);	
+	try {
+	let entity = await  this.service.create(dto);	
 	if(entity.erro) {
 		res.status(500).send(entity);
 	} else	
 	res.send(entity);
+} catch(err) {
+	res.status(500).send(err.message);
+}
 });
 
 

@@ -2,8 +2,12 @@
 const logger = require('../utils/logger');
 
 class Service {
-	constructor(repository) {
+	constructor(repository, table) {
+		if(!repository || !table) {
+			throw new Error("Repository and Model are both required");
+		}
 		this.repository = new repository();
+		this.table = table;
 		this.logger = logger;
 	}
 	async get(id) {
