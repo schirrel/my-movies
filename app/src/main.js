@@ -12,8 +12,15 @@ import './assets/styles.css';
 import './assets/creative-tim/blk-design-system/assets/css/blk-design-system.min.css';
 import './assets/creative-tim/blk-design-system/assets/css/nucleo-icons.css';
 
-// import './assets/creative-tim/blk-design-system/assets/js/core/jquery.min.js';
-// import './assets/creative-tim/blk-design-system/assets/js/blk-design-system.js'
+import jquery from 'jquery';
+
+import popper from 'popper.js';
+
+import bootstrap from 'bootstrap';
+
+import initDesignSystem from './assets/creative-tim/blk-design-system/assets/js/blk-design-system';
+initDesignSystem(jquery, popper, bootstrap);
+
 Vue.config.productionTip = false
 
 Vue.use(VueToast, {  
@@ -21,6 +28,7 @@ Vue.use(VueToast, {
   duration: 10000,
   queue: true,
 });
+
 
 new Vue({
   router,

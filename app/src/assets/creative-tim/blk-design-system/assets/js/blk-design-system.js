@@ -1,3 +1,4 @@
+/* eslint-disable */
 /*!
 
  =========================================================
@@ -15,7 +16,8 @@
 
  */
 
-
+function initDesignSystem($){
+  
 var transparent = true;
 var big_image;
 
@@ -94,8 +96,8 @@ $(document).ready(function() {
   // Activate the image for the navbar-collapse
   blackKit.initNavbarImage();
 
-  $navbar = $('.navbar[color-on-scroll]');
-  scroll_distance = $navbar.attr('color-on-scroll') || 500;
+var  $navbar = $('.navbar[color-on-scroll]');
+ window.scroll_distance = $navbar.attr('color-on-scroll') || 500;
 
   // Check if we have the class "navbar-color-on-scroll" then add the function to remove the class "navbar-transparent" so it will transform to a plain color.
 
@@ -176,7 +178,7 @@ function debounce(func, wait, immediate) {
 };
 
 $(document).on('click', '.navbar-toggler', function() {
-  $toggle = $(this);
+var  $toggle = $(this);
 
   if (blackKit.misc.navbar_menu_visible == 1) {
     $('html').removeClass('nav-open');
@@ -189,7 +191,7 @@ $(document).on('click', '.navbar-toggler', function() {
     setTimeout(function() {
       $toggle.addClass('toggled');
     }, 580);
-    div = '<div id="bodyClick"></div>';
+   var div = '<div id="bodyClick"></div>';
     $(div).appendTo('body').click(function() {
       $('html').removeClass('nav-open');
       blackKit.misc.navbar_menu_visible = 0;
@@ -204,13 +206,13 @@ $(document).on('click', '.navbar-toggler', function() {
   }
 });
 
-blackKit = {
+var blackKit = {
   misc: {
     navbar_menu_visible: 0
   },
 
   checkScrollForTransparentNavbar: debounce(function() {
-    if ($(document).scrollTop() > scroll_distance) {
+    if ($(document).scrollTop() > window.scroll_distance) {
       if (transparent) {
         transparent = false;
         $('.navbar[color-on-scroll]').removeClass('navbar-transparent');
@@ -292,3 +294,7 @@ blackKit = {
 }
 
 
+
+}
+
+export default initDesignSystem;

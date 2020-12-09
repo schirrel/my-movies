@@ -7,7 +7,7 @@ export default class Auth {
  * @returns {Function} Promise
  */
 static register(value) {
-  return Storage.set('storedToken',value);
+  return Storage.set('my-movie-jwt',value);
 }
 /**
  * @returns {Promise} Promise

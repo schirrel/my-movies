@@ -11,69 +11,59 @@ Vue.use(Router);
 
 const APP_TITLE = 'My Movie'
 
-let routes = [
+let routes =  [
   {
     path: '/login',
     name: 'login',
     component: Login,
     meta: {
-      title: "Login"
+      title:"Login"
     }
   }, {
     path: '/logout',
     name: 'logout',
     component: Logout, meta: {
-      title: "Logout"
+      title:"Logout"
     }
   }, {
     path: '/',
     component: Secure,
     meta: {
       title: 'Secure',
-      secure: true
+      secure:true
     }, children: [
       {
-        path: '/profile',
-        name: 'secure.profile',
-        redirect: '/profile',
-        component: Profile,
-        meta: {
-          title: 'Profile',
-          secure: true
-        }
-      },
-
-      {
-        path: '/home',
+        path: '/',
         name: 'secure.home',
         component: Home,
         meta: {
           title: 'Home',
           secure:true
         }
+      }, {
+        path: '/profile',
+        name: 'secure.profile',
+        component: Profile,
+        meta: {
+          title: 'Profile',
+          secure:true
+        }
       }
     ]
-  },
-
+  }, 
+  
 ]
 
 const router = new Router({
-  mode: 'history',
-  routes: routes
+  routes
 });
 
 router.beforeEach((to, from, next) => {
   window.document.title = APP_TITLE + (to.meta && to.meta.title ? ' > ' + to.meta.title : '');
 
-  if (to.path != '/login' ) {
-    next()
-  }
-  
   const isSecure = to.matched.some((route) => route.meta.secure);
-
   if (!isSecure) return next();
-  const jwt = Storage.has('my-movie-jwt');
-  if (jwt)
+  if (Storage.has('my-movie-jwt'))
   {
     next();
           //  next({ name: 'vencimento'})

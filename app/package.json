@@ -1,7 +1,7 @@
 {
-  "name": "sacolao-web-app",
+  "name": "my-movieseb-app",
   "version": "1.1.0",
-  "description": "Front web app for delivery management",
+  "description": "Front web app for My Movies",
   "author": "Alan Schio<alanbschio@gmail.com>",
   "private": true,
   "scripts": {
@@ -12,13 +12,16 @@
     "deploy": "build && open"
   },
   "dependencies": {
+    "@schirrel/request": "^1.2.0",
+    "axios": "^0.21.0",
+    "bootstrap": "^4.5.3",
     "core-js": "^3.6.5",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1",
+    "v-money": "^0.8.1",
     "vue": "2.6.12",
     "vue-router": "3.1.3",
-    "vue-toast-notification": "^0.5.0",
-    "@schirrel/request": "^1.2.0",
-    "bootstrap": "^4.5.2",
-    "v-money": "^0.8.1"
+    "vue-toast-notification": "^0.5.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

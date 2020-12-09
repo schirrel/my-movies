@@ -44,19 +44,10 @@
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a></li>
                 </ul>
               </li>
-          <li class="nav-item p-0">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Twitter">
-             <p >Recuperar Senha</p>
-            </a>
-          </li>
-             <li class="nav-item p-0">
-            <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="#" target="_blank" data-original-title="Follow us on Twitter">
-             <p>Cadastre-se</p>
-            </a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link btn btn-default d-none d-lg-block" href="javascript:void(0)" onclick="scrollToDownload()">
-              <i class="tim-icons icon-cloud-download-93"></i> Acessar
+              <i class="tim-icons icon-cloud-download-93"></i> Sair
             </a>
           </li>
         </ul>
