@@ -69,8 +69,7 @@ export default {
   methods: {
     doLogin: function () {
       Auth.login(this.auth, () => {
-        console.log("logged")
-        this.$router.push("/profile");
+        his.$router.push({ name: 'profile' });
       });
     },
   },
