@@ -3,17 +3,6 @@
     <section class="app-container">
       <router-view></router-view>
     </section>
-  <!-- Footer -->
-<footer class="page-footer font-small bg-dark pt-4">
-
-   <!-- Copyright -->
-  <div class="footer-copyright text-center text-light  py-3">Versão {{version}} - Desenvolvido por
-    <a href="https://schirrel.dev"> @schirrel</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
   </main>
 </template>
 
@@ -30,6 +19,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

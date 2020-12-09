@@ -9,7 +9,11 @@ import 'vue-toast-notification/dist/theme-default.css';
 import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './assets/styles.css';
+import './assets/creative-tim/blk-design-system/assets/css/blk-design-system.min.css';
+import './assets/creative-tim/blk-design-system/assets/css/nucleo-icons.css';
 
+// import './assets/creative-tim/blk-design-system/assets/js/core/jquery.min.js';
+// import './assets/creative-tim/blk-design-system/assets/js/blk-design-system.js'
 Vue.config.productionTip = false
 
 Vue.use(VueToast, {  

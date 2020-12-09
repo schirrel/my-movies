@@ -9,7 +9,7 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "open": "http-server ./dist",
-    "deploy" : "build && open"
+    "deploy": "build && open"
   },
   "dependencies": {
     "core-js": "^3.6.5",

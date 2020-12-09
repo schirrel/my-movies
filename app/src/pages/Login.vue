@@ -1,117 +1,87 @@
 <template>
-    <div class="container">
-
-        <form action="" @submit.prevent="doLogin">
-
-
-<article>
-    <h4> App</h4>
-    <div class="full-width">
-  <label for="fieldUser">User</label>
-    <input type="text" v-model="auth.user" required placeholder="my.user" id="fieldUser">
+  <div class="wrapper">
+    <div class="page-header">
+      <div class="page-header-image"></div>
+      <div class="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-5 col-md-6 offset-lg-0 offset-md-3">
+              <div class="card card-register">
+                <div class="card-header">
+                  <h4 class="card-title">Login</h4>
+                </div>
+                <form class="form" action="" @submit.prevent="doLogin">
+                  <div class="card-body">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-email-85"></i>
+                        </div>
+                      </div>
+                      <input
+                        type="email"
+                        placeholder="Email"
+                        v-model="auth.email"
+                        required
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-lock-circle"></i>
+                        </div>
+                      </div>
+                      <input
+                        type="password"
+                        class="form-control"
+                        v-model="auth.password"
+                        required
+                        placeholder="Password"
+                      />
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn btn-info btn-round btn-lg">
+                      Acessar My Movies
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-<div class="full-width ">
-
-    <label for="fieldPassword">Password</label>
-    <input type="password" v-model="auth.password" id="fieldPassword" placeholder="****" required autocomplete="false">
-</div>
-
-</article>  
-
- 
-
-        <button class="button"> Log In </button>
-        </form>
-
-    </div>
-
+  </div>
 </template>
 
 <script>
-import Auth from '../services/Auth';
-    export default {
-        name: 'Login',
+import Auth from "../services/Auth";
+export default {
+  name: "Login",
 
-    
-        data() {
-            return {
-                auth: {
-                }
-            }
-        },
-        methods: {
-            doLogin : function() {
-                Auth.login(this.auth, ()=>{
-                    this.$router.push('/')
-                })
-            }
-    }
-    }
+  data() {
+    return {
+      auth: {},
+    };
+  },
+  methods: {
+    doLogin: function () {
+      Auth.login(this.auth, () => {
+        console.log("logged")
+        this.$router.push("/profile");
+      });
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-* {
-    text-align: left;
+.card-title {
+  color: white !important;
+  padding-left: 10px;
+  text-transform: capitalize !important;
 }
-    tfoot td {
-        text-align: right;
-    }
-    
-    td:first-child,
-    th:first-child {
-        max-width: 50px !important;
-    }
-    
-    td button {
-        padding: 0px 5px !important;
-        margin: 0;
-    }
-    .restart-button {
-        float:left
-    }
-
-    .winner {
-        display: inline-block
-    }
-    input[type="date"] {
-    webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-color: transparent;
-    border: 0.1rem solid #d1d1d1;
-    border-radius: .4rem;
-    box-shadow: none;
-    box-sizing: inherit;
-    height: 3.8rem;
-    padding: .6rem 1.0rem;
-    width: 100%;
-}
-
-
-.full-width {
-    clear: both;
-
-}
-
-
-.quarter-width ,
-.three-quarter-width ,
-.half-width,
-.three-quarter-width {
-    padding: 0px 5px;
-    float:left;
-}
-
-.three-quarter-width {
-    width: 75%;
-}
-.quarter-width {
-    width: 25%;
-}
-.half-width {
-    width:50%;
-}
-
 </style>

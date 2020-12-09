@@ -13,7 +13,7 @@ static register(value) {
  * @returns {Promise} Promise
  */
 static unregister() {
-  return  Storage.clear('storedToken');
+  return  Storage.clear('my-movie-jwt');
 }
 /**
  * @param {Object} credentials
