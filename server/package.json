@@ -1,6 +1,6 @@
 {
-    "name": "system-info",
-    "description": "Scheduler to request systems to get they status",
+    "name": "my-movies-server",
+    "description": "Backend project for my movies",
     "main": "src/index.js",
     "scripts": {
         "start": "nodemon --inspect src/index.js",

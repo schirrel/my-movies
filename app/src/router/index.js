@@ -33,7 +33,7 @@ let routes =  [
       secure:true
     }, children: [
       {
-        path: '/',
+        path: '/home',
         name: 'secure.home',
         component: Home,
         meta: {
@@ -41,7 +41,7 @@ let routes =  [
           secure:true
         }
       }, {
-        path: '/profile',
+        path: '/',
         name: 'secure.profile',
         component: Profile,
         meta: {

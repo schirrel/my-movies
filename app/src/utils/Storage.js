@@ -10,9 +10,8 @@ export default class Storage {
     }
     static get(key) {
         return new Promise((resolve, reject) => {
-            try {
-                Storage.parse(window.localStorage.getItem(key));
-                resolve();
+            try {                
+                resolve(Storage.parse(window.localStorage.getItem(key)));
             } catch (err) {
                 reject(err);
             }
