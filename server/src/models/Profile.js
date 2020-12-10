@@ -4,7 +4,7 @@ class Profile extends Model{
 	super("PROFILE")
 	this.addColumn('name', 'NAME');
 	this.addColumn('main', 'MAIN');
-	this.addColumn('user', 'USER');
+	this.addColumn('user', 'USER_ID');
 	this.setValues(args);
 	}
 }

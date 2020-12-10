@@ -1,4 +1,5 @@
 import Storage from '@/utils/Storage';
+import {$ApiRequest, $api} from './ApiRequest';
 
 export default class Auth {
 
@@ -20,13 +21,15 @@ static unregister() {
  * @param {Function} success
  */
   static login(credentials, success) {
-    return this.loginFake(credentials, success);
-  /*
-  return Request
-    .post('/auth/login', { body: credentials })
+    /*return this.loginFake(credentials, success);
+  */
+ console.log($api);
+ console.log($ApiRequest);
+  return $ApiRequest.api
+    .post('/login', credentials)
     .then((response) =>{
       this.register(response.token).then((success))
-    });*/
+    });
 }
 
 static loginFake(credentials, success) {

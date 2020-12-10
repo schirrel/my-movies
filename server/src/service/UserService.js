@@ -26,7 +26,8 @@ class UserService extends Service {
 	}
 	async create(model) {
 		this.validateCreate(model);
-		let entity =  await super.create(model);
+		let result =  await super.create(model);
+		let entity = result.rows[0];
 		let perfiPrincipal = await this.profileService.create({name:'Meu Perfil', main: true, user: entity.id});
 		
 		return entity;

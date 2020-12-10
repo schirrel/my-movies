@@ -109,6 +109,7 @@ export default {
   methods: {
     doLogin: function () {
       Auth.login(this.auth, () => {
+        console.log("loogo")
         this.$router.push({ name: "secure.profile" });
       });
     },

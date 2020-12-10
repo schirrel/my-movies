@@ -40,4 +40,7 @@ function createRequest($url) {
     }
 
 }
+
+export const $api = api;
+export const $ApiRequest = ApiRequest;
 export default createRequest;
