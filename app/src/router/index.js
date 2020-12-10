@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/pages/Home'
 import Profile from '@/pages/Profile'
 import Login from '@/pages/Login'
+import Register from '@/pages/Register'
 import Logout from '@/pages/Logout'
 import Secure from '@/pages/Secure'
 import Storage from '../utils/Storage'
@@ -19,7 +20,16 @@ let routes =  [
     meta: {
       title:"Login"
     }
-  }, {
+  }, 
+  {
+    path: '/register',
+    name: 'register',
+    component: Register,
+    meta: {
+      title:"Register"
+    }
+  }, 
+  {
     path: '/logout',
     name: 'logout',
     component: Logout, meta: {

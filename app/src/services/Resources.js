@@ -1,3 +1,3 @@
 import createRequest from './ApiRequest';
-
-export const $product = createRequest('/user');
+var _user = createRequest('/user');
+export const $user =_user;

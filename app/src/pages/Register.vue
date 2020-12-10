@@ -3,7 +3,6 @@
     <div class="page-header">
       <nav
         class="navbar navbar-expand-lg fixed-top navbar-transparent"
-        color-on-scroll="100"
       >
         <div class="container">
           <div class="navbar-translate">
@@ -28,14 +27,10 @@
               </div>
             </div>
             <ul class="navbar-nav">
+              
               <li class="nav-item">
-                <router-link class="nav-link" to="/login ">
-                  <small> Recuperar Senha </small>
-                </router-link>
-              </li>
-              <li class="nav-item">
-                <router-link class="nav-link btn btn-primary" to="/register">
-                  Cadastre-se
+                <router-link class="nav-link btn btn-primary" to="/login">
+                  Acessar
                 </router-link>
               </li>
             </ul>
@@ -48,10 +43,24 @@
             <div class="col-lg-5 col-md-6 offset-lg-0 offset-md-3">
               <div class="card card-register">
                 <div class="card-header">
-                  <h4 class="card-title">Login</h4>
+                  <h4 class="card-title">Cadastro</h4>
                 </div>
-                <form class="form" action="" @submit.prevent="doLogin">
+                <form class="form" action="" @submit.prevent="onSubmit">
                   <div class="card-body">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="tim-icons icon-single-02"></i>
+                        </div>
+                      </div>
+                      <input
+                        type="text"
+                        placeholder="Nome"
+                        v-model="user.name"
+                        required
+                        class="form-control"
+                      />
+                    </div>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <div class="input-group-text">
@@ -61,7 +70,7 @@
                       <input
                         type="email"
                         placeholder="Email"
-                        v-model="auth.email"
+                        v-model="user.email"
                         required
                         class="form-control"
                       />
@@ -75,7 +84,7 @@
                       <input
                         type="password"
                         class="form-control"
-                        v-model="auth.password"
+                        v-model="user.password"
                         required
                         placeholder="Password"
                       />
@@ -83,7 +92,7 @@
                   </div>
                   <div class="card-footer">
                     <button class="btn btn-info btn-round btn-lg">
-                      Acessar My Movies
+                      Salvar
                     </button>
                   </div>
                 </form>
@@ -97,20 +106,18 @@
 </template>
 
 <script>
-import Auth from "../services/Auth";
+import {$user} from '../services/Resources';
 export default {
-  name: "Login",
+  name: "Register",
 
   data() {
     return {
-      auth: {},
+      user: {},
     };
   },
   methods: {
-    doLogin: function () {
-      Auth.login(this.auth, () => {
-        this.$router.push({ name: "secure.profile" });
-      });
+    onSubmit: function () {
+      $user.post('/', this.user).then(console.log);
     },
   },
 };
