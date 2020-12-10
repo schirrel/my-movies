@@ -1,17 +1,23 @@
 <template>
   <div class="container">
-
     <div class="row">
+      <genres v-model="genre"> </genres>
     </div>
   </div>
 </template>
 
 <script>
+import GenreSelect from "@/components/GenreSelect";
 export default {
   name: "Home",
-  data() {
-    return {};
+   components: {
+    "genres": GenreSelect,
   },
+  data() {
+    return { genre: null };
+  },
+  mounted() {
+  }
 };
 </script>
 

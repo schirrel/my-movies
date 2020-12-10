@@ -16,7 +16,7 @@ import Auth from '../services/Auth';
 
         mounted() {
             Auth.logout(()=>{
-                    this.$router.push('/Login')
+                    this.$router.push({name:'login'})
                 })
         },
         data() {

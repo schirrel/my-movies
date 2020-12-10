@@ -9,38 +9,38 @@ import Secure from '@/pages/Secure'
 import Storage from '../utils/Storage'
 
 Vue.use(Router);
-
+console.log(Storage)
 const APP_TITLE = 'My Movie'
 
-let routes =  [
+let routes = [
   {
     path: '/login',
     name: 'login',
     component: Login,
     meta: {
-      title:"Login"
+      title: "Login"
     }
-  }, 
+  },
   {
     path: '/register',
     name: 'register',
     component: Register,
     meta: {
-      title:"Register"
+      title: "Register"
     }
-  }, 
+  },
   {
     path: '/logout',
     name: 'logout',
     component: Logout, meta: {
-      title:"Logout"
+      title: "Logout"
     }
   }, {
     path: '/',
     component: Secure,
     meta: {
       title: 'Secure',
-      secure:true
+      secure: true
     }, children: [
       {
         path: '/home',
@@ -48,7 +48,7 @@ let routes =  [
         component: Home,
         meta: {
           title: 'Home',
-          secure:true
+          secure: true
         }
       }, {
         path: '/',
@@ -56,12 +56,12 @@ let routes =  [
         component: Profile,
         meta: {
           title: 'Profile',
-          secure:true
+          secure: true
         }
       }
     ]
-  }, 
-  
+  },
+
 ]
 
 const router = new Router({
@@ -73,17 +73,17 @@ router.beforeEach((to, from, next) => {
 
   const isSecure = to.matched.some((route) => route.meta.secure);
   if (!isSecure) return next();
-  if (Storage.has('my-movie-jwt'))
-  {
+  if (Storage.has('my-movie-jwt')) {
     next();
-          //  next({ name: 'vencimento'})
-  
+    //  next({ name: 'vencimento'})
+
   } else {
-    next({
-      path: '/login',
-      params: { nextUrl: to.fullPath }
-  })
-}
+    if (from.name != 'login')
+      next({
+        path: '/login',
+        params: { nextUrl: to.fullPath }
+      })
+  }
 
 })
 export default router;

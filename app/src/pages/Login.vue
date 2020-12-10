@@ -42,52 +42,52 @@
           </div>
         </div>
       </nav>
-      <div class="content">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-5 col-md-6 offset-lg-0 offset-md-3">
-              <div class="card card-register">
-                <div class="card-header">
-                  <h4 class="card-title">Login</h4>
-                </div>
-                <form class="form" action="" @submit.prevent="doLogin">
-                  <div class="card-body">
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <i class="tim-icons icon-email-85"></i>
-                        </div>
-                      </div>
-                      <input
-                        type="email"
-                        placeholder="Email"
-                        v-model="auth.email"
-                        required
-                        class="form-control"
-                      />
-                    </div>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">
-                          <i class="tim-icons icon-lock-circle"></i>
-                        </div>
-                      </div>
-                      <input
-                        type="password"
-                        class="form-control"
-                        v-model="auth.password"
-                        required
-                        placeholder="Password"
-                      />
-                    </div>
-                  </div>
-                  <div class="card-footer">
-                    <button class="btn btn-info btn-round btn-lg">
-                      Acessar My Movies
-                    </button>
-                  </div>
-                </form>
+    </div>
+    <div class="content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-5 col-md-6 offset-lg-0 offset-md-3">
+            <div class="card card-register">
+              <div class="card-header">
+                <h4 class="card-title">Login</h4>
               </div>
+              <form class="form" action="" @submit.prevent="doLogin">
+                <div class="card-body">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-email-85"></i>
+                      </div>
+                    </div>
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      v-model="auth.email"
+                      required
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="tim-icons icon-lock-circle"></i>
+                      </div>
+                    </div>
+                    <input
+                      type="password"
+                      class="form-control"
+                      v-model="auth.password"
+                      required
+                      placeholder="Password"
+                    />
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-info btn-round btn-lg">
+                    Acessar My Movies
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -108,9 +108,10 @@ export default {
   },
   methods: {
     doLogin: function () {
+      let vueInstance = this;
       Auth.login(this.auth, () => {
-        console.log("loogo")
-        this.$router.push({ name: "secure.profile" });
+        console.log("loogo");
+        vueInstance.$router.push({ name: "secure.profile" });
       });
     },
   },

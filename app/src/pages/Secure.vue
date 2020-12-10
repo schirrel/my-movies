@@ -1,11 +1,16 @@
 <template>
   <main id="app">
-    <navbar></navbar>
-    
-      <section class="app-container">
-       <router-view></router-view>
-      
-    </section>
+    <div class="wrapper">
+      <div class="page-header">
+        <navbar></navbar>
+      </div>
+
+      <div class="content">
+        <div class="container">
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -13,24 +18,26 @@
 import Navbar from "@/components/Navbar";
 export default {
   name: "App",
- components: {
-    "navbar": Navbar,
+  components: {
+    navbar: Navbar,
   },
   data() {
     return {
       loading: false,
     };
   },
-  mounted() {
-   
-  },
+  mounted() {},
 };
 </script>
 
 <style>
 .app-container {
-  margin-top: 100px;
-  min-height: calc(100vh - 120px);
+  /* margin-top: 100px;
+  min-height: calc(100vh - 120px); */
+}
+.page-header {
+  height: 100px !important;
+  min-height: 100px !important;
 }
 </style>
 

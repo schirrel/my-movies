@@ -28,7 +28,7 @@ static unregister() {
   return $ApiRequest.api
     .post('/login', credentials)
     .then((response) =>{
-      this.register(response.token).then((success))
+      this.register(response).then((success))
     });
 }
 

@@ -105,7 +105,7 @@
           </li>
           <li class="nav-item">
             
-          <router-link class="nav-link d-none d-lg-block" to="/login ">
+          <router-link class="nav-link d-none d-lg-block" to="/logout ">
               <i class="tim-icons icon-button-power"></i> Sair
               </router-link>   
           </li>
