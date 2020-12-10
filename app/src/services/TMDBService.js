@@ -23,6 +23,14 @@ const genres =  async () => {
         let result = await api.get('genre/movie/list');
         return result.data.genres;      
 }
+
+const movies = {
+ 
+    popular:  async (page) => {
+        let result = await api.get('movie/popular',{page:page});
+        return result.data;      
+}
+}
 export {
     genres
 }
