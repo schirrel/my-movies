@@ -32,5 +32,5 @@ const movies = {
 }
 }
 export {
-    genres
+    genres, movies
 }
