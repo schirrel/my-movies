@@ -4,13 +4,13 @@ dotenv.config();
 
 class TokenService {
 
-	static async generateKey(userId) {
+	static async encode(userId) {
 		try {
 			console.log(`${process.env.TOKEN_VALIDATION}`)
-	var token =
-			await jwt.sign({
-			data: userId
-			}, process.env.SECRET, { expiresIn:`${process.env.TOKEN_VALIDATION}` });
+			var token =
+				await jwt.sign({
+					data: userId
+				}, process.env.SECRET, { expiresIn: `${process.env.TOKEN_VALIDATION}` });
 
 			return token;
 		} catch (err) {
@@ -18,6 +18,10 @@ class TokenService {
 			console.log(err)
 		}
 
+	}
+	static decode(token){
+		const decoded = jwt.verify(token, process.env.SECRET);
+		return decoded;     
 	}
 }
 

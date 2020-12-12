@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/search', async (req, res) => {
-	let list = await this.service.search(req.query);
+	let list = await this.service.search(req);
 	res.send(list);
 });
 

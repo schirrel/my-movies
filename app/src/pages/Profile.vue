@@ -75,18 +75,22 @@
 
 <script>
 import Storage from "@/utils/Storage";
+import { $profile } from "@/services/Resources";
 export default {
   name: "Profile",
   data() {
     return {
-      profiles: [
-        { id: 1, name: "Main Profile" },
-        { id: 2, name: "Kids" },
-      ],
+      profiles: [],
       editingAll: false,
     };
   },
+  mounted() {
+    this.loadProfile();
+  },
   methods: {
+    async loadProfile() {
+      this.profiles = await $profile.search();
+    },
     selectProfile: function (event, profile) {
       event.preventDefault();
       if (this.hasEditing || this.editingAll) {
@@ -94,7 +98,7 @@ export default {
       }
       if (profile.id) {
         Storage.set("my-movie-profile", profile);
-        this.$router.push({ name: 'secure.home' });
+        this.$router.push({ name: "secure.home" });
       }
     },
     addNewProfile: function () {

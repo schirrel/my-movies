@@ -1,7 +1,6 @@
 
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-
+const TokenService = require('../../service/TokenService');
 const auth = async (req, res, next) => {
     try {
         const authorization = req.header('Authorization');
@@ -9,8 +8,7 @@ const auth = async (req, res, next) => {
             res.status(401).send({ error: 'Please authenticate!' })
         } else {
             const token = authorization.replace('Bearer', '').trim()
-            const decoded = jwt.verify(token, process.env.SECRET);
-            console.log(decoded);            
+            const decoded = TokenService.decode(token);
         }
         next()
     } catch (error) {
