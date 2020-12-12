@@ -4,6 +4,10 @@
   "description": "",
   "scripts": {
     "start": "echo \"Started\" && cd server && npm run start"
+    "test": "echo \"No tests yet\" ",
+    "build-app":"cd app && npm run build",
+    "build-server":"cd server && npm run build",
+    "build": "builder-app && builder-server"
   },
   "repository": {
     "type": "git",
