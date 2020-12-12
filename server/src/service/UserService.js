@@ -3,6 +3,8 @@ const ProfileService = require('./ProfileService');
 const UserRepository = require('../repository/UserRepository');
 const User = require('../models/User');
 
+module.exports = new Service(UserRepository, User);
+/*
 class UserService extends Service {
 	constructor() {
 		super(UserRepository, User);
@@ -36,7 +38,7 @@ class UserService extends Service {
 
 
 module.exports = UserService;
-
+*/
 // 
 /*
 const UserService = require('./UserService');
