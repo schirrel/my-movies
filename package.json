@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {    
-    "prepare": "cd server && npm install && cd ../app && npm install",
+    "prepare-project": "cd server && npm install && cd ../app && npm install",
     "start": "echo \"Started\" && cd server && npm run start",
     "test": "echo \"No tests yet\" ",
     "build-app":"cd app && npm run build",
