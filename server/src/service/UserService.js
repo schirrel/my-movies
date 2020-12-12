@@ -3,7 +3,7 @@ const ProfileService = require('./ProfileService');
 const UserRepository = require('../repository/UserRepository');
 const User = require('../models/User');
 
-module.exports = new Service(UserRepository, User);
+module.exports = Service;
 /*
 class UserService extends Service {
 	constructor() {
