@@ -3,8 +3,8 @@ class Movie extends Model{
 	constructor(args = {}){
 	super("MOVIE")
 	this.addColumn('movie', 'MOVIE_ID');
-	this.addColumn('watched', 'MAIN');
-	this.addColumn('profile', 'PROFILE');
+	this.addColumn('watched', 'WATCHED');
+	this.addColumn('profile', 'PROFILE_ID');
 	this.setValues(args);
 	}
 }

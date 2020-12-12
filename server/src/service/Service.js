@@ -14,10 +14,13 @@ class Service {
 		return await this.repository.get(id);
 	}
 	async create(model) {
-		return await this.repository.create(model);
+		let result =  await this.repository.create(model);
+		console.log(result);
+		return result.rows[0];
 	}
 	async update(model) {
-		return await this.repository.update(model);
+		let result =  await this.repository.update(model);
+		return result.rows[0];
 	}
 
 	async delete(id) {

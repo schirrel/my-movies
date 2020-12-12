@@ -13,10 +13,15 @@
               <button
                 type="button"
                 class="btn btn-link hover-red"
+                :class="model.list ? 'btn-default' : ''"
                 title="Adicionar a Lista"
                 @click="addToWatchList"
               >
-                <i class="tim-icons icon-heart-2"></i>
+                <i
+                  class="tim-icons icon-heart-2"
+                  :class="model.list ? 'text-success' : ''"
+                ></i>
+                <span class="sr-only">{{ model.list ? "Listado" : "" }}</span>
               </button>
             </div>
             <div class="col-4">
@@ -115,7 +120,14 @@ export default {
     return {
       showModal: false,
       model: null,
+      profile: null,
     };
+  },
+  mounted() {
+    let vueInstance = this;
+    Storage.get("my-movie-profile").then((res) => {
+      vueInstance.profile = res.id;
+    });
   },
   methods: {
     close() {
@@ -125,14 +137,30 @@ export default {
       let data = await movies.get(this.movie);
       this.model = data;
       this.model.genre = data.genres.map((g) => g.name).join(", ");
+      let result = await $movie.search({
+        movie: this.model.id,
+        profile: this.profile,
+      });
+      if (result && result.data && result.data.length) {
+        this.model.list = result.data[0];
+      }
     },
     addToWatchList() {
-      Storage.get("my-movie-profile").then((res)=>{
-      $movie.save({
+      let listed = {
         movie: this.model.id,
-        profile: res.id,
-      });
-      })
+        profile: this.profile,
+      };
+
+      $movie
+        .save(listed)
+        .then((res) => {
+          this.model.list = res;
+          console.log(res);
+          this.$toast.success("Filme adicionado a sua lista");
+        })
+        .catch((err) => {
+          this.$toast.error(err.response.data || err.message);
+        });
     },
   },
   watch: {
