@@ -38,6 +38,7 @@ class UserService extends Service {
 module.exports = UserService;
 
 // 
+/*
 const UserService = require('./UserService');
 
 const TokenService = require('./TokenService');
@@ -66,3 +67,4 @@ class SessionService {
 }
 
 module.exports = SessionService; 
+*/
