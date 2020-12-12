@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const TokenService = require('./TokenService');
-const UserService = require('./UserService');
+const UserService = require('./UserService').default();
 const service = new UserService();
 
 class SessionService {
