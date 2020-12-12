@@ -109,9 +109,20 @@ export default {
   methods: {
     doLogin: function () {
       let vueInstance = this;
-      Auth.login(this.auth, () => {
-        vueInstance.$router.push({ name: "secure.profile" });
-      });
+      Auth.login(
+        this.auth,
+        () => {
+          vueInstance.$router.push({ name: "secure.profile" });
+        },
+        (err) => {
+          if (err.response.status == 401) {
+            vueInstance.$toast.error(err.response.data);
+          } else {
+            vueInstance.$toast.error("Não foi possivel acessar sua conta!");
+          }
+          console.log(err.message);
+        }
+      );
     },
   },
 };

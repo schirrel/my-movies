@@ -119,7 +119,6 @@ export default {
       this.editingAll = !this.editingAll;
     },
     defineMainProfile: function (event, profile) {
-      console.log("hr");
       event.preventDefault();
       this.profiles.forEach((a) => {
         a.main = a.id == profile.id;

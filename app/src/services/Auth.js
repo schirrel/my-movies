@@ -24,13 +24,13 @@ static unregister() {
  * @param {Object} credentials
  * @param {Function} success
  */
-  static login(credentials, success) {
+  static login(credentials, success, error) {
     
   return $ApiRequest.api
     .post('/login', credentials)
     .then((response) =>{
       this.register(response.data).then((success))
-    });
+    }).catch(error);
 }
 
 static loginFake(credentials, success) {
@@ -67,10 +67,9 @@ static logoutFake(success) {
 $api.interceptors.response.use(function (response) {
 return response;
 }, function (error) {
-  if(error.response.status==401) {
+  if(error.response.status==401 && error.config.url!=='/login') {
     Vue.$toast.error("Quem pena, sua sessão expirou!");
-    setTimeout(()=>{
-  
+    setTimeout(()=>{  
       Auth.logout(()=>{    
         window.location = '/login';
       });
