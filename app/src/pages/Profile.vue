@@ -112,7 +112,7 @@ export default {
       
       
     },
-    createProfile: function (event, profile) {
+    createProfile: async function (event, profile) {
       event.preventDefault();
       
       delete profile.editing;
@@ -120,7 +120,7 @@ export default {
       this.loadProfile();
       
     },
-    deleteProfile: function (event, profile) {
+    deleteProfile: async function (event, profile) {
       event.preventDefault();      
       let result = await $profile.delete(profile.id);
       this.loadProfile();
