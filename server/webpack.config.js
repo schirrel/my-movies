@@ -16,7 +16,7 @@ module.exports = {
 		new webpack.IgnorePlugin(/^pg-native$/)
 	],
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, '../dist'),
 		filename: 'api.bundle.js',
 		publicPath: ASSET_PATH,
 	},

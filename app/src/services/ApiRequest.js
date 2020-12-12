@@ -8,7 +8,6 @@ ApiRequest.setToken = (value) => {
 }
 
 const _get = (url, params={}) => {
-    console.log(params)
     return ApiRequest.api.get(url, { params });
 }
 const _post = (url, data) => {

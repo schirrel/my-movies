@@ -89,7 +89,8 @@ export default {
   },
   methods: {
     async loadProfile() {
-      this.profiles = await $profile.search();
+      let result = await $profile.search();
+      this.profiles = result.data;
     },
     selectProfile: function (event, profile) {
       event.preventDefault();

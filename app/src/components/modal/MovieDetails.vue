@@ -155,7 +155,6 @@ export default {
         .save(listed)
         .then((res) => {
           this.model.list = res;
-          console.log(res);
           this.$toast.success("Filme adicionado a sua lista");
         })
         .catch((err) => {

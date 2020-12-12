@@ -8,7 +8,7 @@
     "test": "echo \"No tests yet\" ",
     "build-app":"cd app && npm run build",
     "build-server":"cd server && npm run build",
-    "build": "npm run builder-app && npm run builder-server"
+    "build": "npm run build-app && npm run build-server"
   },
   "repository": {
     "type": "git",
