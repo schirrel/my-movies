@@ -106,18 +106,24 @@ export default {
       if (this.profiles.length < 6 && !this.hasEditing) {
         this.profiles.push({
           name: `Perfil ${this.profiles.length}`,
-          editing: true,
-          id: this.profiles.length + 1,
+          editing: true
         });
       }
+      
+      
     },
     createProfile: function (event, profile) {
       event.preventDefault();
-      profile.editing = false;
+      
+      delete profile.editing;
+      let result = await $profile.create(profile);
+      this.loadProfile();
+      
     },
     deleteProfile: function (event, profile) {
-      event.preventDefault();
-      this.profiles = this.profiles.filter((p) => p.id != profile.id);
+      event.preventDefault();      
+      let result = await $profile.delete(profile.id);
+      this.loadProfile();
     },
     removeProfiles: function (event) {
       event.preventDefault();
