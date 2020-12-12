@@ -1,5 +1,4 @@
 const Service = require('./Service');
-const SessionService = require('./SessionService');
 const ProfileRepository = require('../repository/ProfileRepository');
 const Profile = require('../models/Profile');
 

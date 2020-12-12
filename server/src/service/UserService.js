@@ -3,13 +3,9 @@ const ProfileService = require('./ProfileService');
 const UserRepository = require('../repository/UserRepository');
 const User = require('../models/User');
 
-module.exports = Service;
-/*
 class UserService extends Service {
 	constructor() {
-		super(UserRepository, User);
-		this.profileService = new ProfileService();
-		
+		super(UserRepository, User)
 	}
 
 	validateUniqueEmail() {
@@ -38,35 +34,3 @@ class UserService extends Service {
 
 
 module.exports = UserService;
-*/
-// 
-/*
-const UserService = require('./UserService');
-
-const TokenService = require('./TokenService');
-
-console.log(UserService)
-const service = new UserService();
-
-class SessionService {
-	static async authUser(usuario) {
-		let result = await service.search({ email: usuario.email });
-		if (result && result.length) {
-			let found = result[0];
-			if (found.password === usuario.password) {
-				let chave = await TokenService.encode(found.id);
-				return chave;
-			} else
-				throw new Error('Credenciais inválidas');
-		} else
-		throw new  Error('Usuario não encontrado');
-	}
-	static async userFromToken(token) {
-		let fromToken = TokenService.decode(token);
-		let user = await service.get(fromToken.data);
-		return user;
-	}
-}
-
-module.exports = SessionService; 
-*/
