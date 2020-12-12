@@ -9,7 +9,7 @@ class SessionService {
 		if (result && result.length) {
 			let found = result[0];
 			if (found.password === usuario.password) {
-				let chave = await TokenService.generateKey(found.id);
+				let chave = await TokenService.encode(found.id);
 				return chave;
 			} else
 				throw new Error('Credenciais inválidas');

@@ -1,5 +1,6 @@
 const Service = require('./Service');
 const ProfileRepository = require('../repository/ProfileRepository');
+const TokenService = require('../service/TokenService');
 const Profile = require('../models/Profile');
 
 class ProfileService extends Service {
@@ -17,7 +18,6 @@ class ProfileService extends Service {
 		if (!model.user) {
 			throw Error('User is required');
 		}
-		//User utils isDefined
 		if (model.main == "undefined" || model.main == null) {
 			model.main = false;
 		}
@@ -26,8 +26,12 @@ class ProfileService extends Service {
 		this.validateCreate(model);
 		return await super.create(model);
 	}
-	async search(params) {
-		console.log(params);
+	async search(req) {
+		let params = {};
+		let decoded = TokenService.decode(TokenService.getToken(req));
+		if(decoded.data) {
+			params.user = decoded.data;
+		}
 		return await super.search(params);
 	}
 }

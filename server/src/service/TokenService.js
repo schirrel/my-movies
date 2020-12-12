@@ -23,6 +23,11 @@ class TokenService {
 		const decoded = jwt.verify(token, process.env.SECRET);
 		return decoded;     
 	}
+
+	static getToken(req){
+		const authorization = req.header('Authorization');
+		return authorization ?  authorization.replace('Bearer', '').trim(): null ;
+	}
 }
 
 module.exports = TokenService; 
