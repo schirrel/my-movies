@@ -116,13 +116,13 @@ export default {
       event.preventDefault();
       
       delete profile.editing;
-      let result = await $profile.create(profile);
+     await $profile.create(profile);
       this.loadProfile();
       
     },
     deleteProfile: async function (event, profile) {
       event.preventDefault();      
-      let result = await $profile.delete(profile.id);
+      await $profile.delete(profile.id);
       this.loadProfile();
     },
     removeProfiles: function (event) {
