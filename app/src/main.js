@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap-reboot.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/styles.css';
-import './assets/creative-tim/blk-design-system/assets/css/blk-design-system.min.css';
+import './assets/creative-tim/blk-design-system/assets/css/blk-design-system.css';
 import './assets/creative-tim/blk-design-system/assets/css/nucleo-icons.css';
 
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
