@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/schirrel/my-movies/issues"
   },
-  "homepage": "https://github.com/schirrel/my-movies#readme"
+  "homepage": "https://github.com/schirrel/my-movies#readme",
+  "dependencies": {
+    "bootstrap-vue": "^2.20.1"
+  }
 }

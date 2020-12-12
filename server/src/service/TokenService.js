@@ -6,6 +6,7 @@ class TokenService {
 
 	static async generateKey(userId) {
 		try {
+			console.log(`${process.env.TOKEN_VALIDATION}`)
 	var token =
 			await jwt.sign({
 			data: userId

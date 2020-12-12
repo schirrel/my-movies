@@ -13,6 +13,7 @@ const api = axios.create({
 api.interceptors.request.use(config => {
     config.params = {
         api_key: apiKey,
+        language:'pt-BR',
         ...config.params,
     };
     return config;
@@ -28,6 +29,9 @@ const movies = {
  
     popular:  async (page) => {
         let result = await api.get('movie/popular',{page:page});
+        return result.data;      
+}, get : async(movieId) => {
+    let result = await api.get(`movie/${movieId}`);
         return result.data;      
 }
 }

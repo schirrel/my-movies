@@ -48,10 +48,10 @@ export default {
     },
     change(e) {
       const selectedCode = e.target.value;
-      const option = this.options.find((option) => {
-        return selectedCode === option.id;
+      const option = this.genres.find((option) => {
+        return selectedCode == option.id;
       });
-      this.mutableValue.country = option;
+      this.mutableValue = option;
       this.$emit("input", this.mutableValue);
     },
   },

@@ -9,7 +9,6 @@ import Secure from '@/pages/Secure'
 import Storage from '../utils/Storage'
 
 Vue.use(Router);
-console.log(Storage)
 const APP_TITLE = 'My Movie'
 
 let routes = [

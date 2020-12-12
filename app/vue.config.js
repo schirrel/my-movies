@@ -8,8 +8,13 @@ const version = JSON.parse(packageJson).version || 0
 
 module.exports = {
   configureWebpack: {
-    // Set up all the aliases we use in our app.
+    
     plugins: [
+      new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+    }),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 6
       }),

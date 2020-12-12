@@ -8,7 +8,7 @@ class MovieService extends Service {
 	}
 
 	validateCreate(model) {
-		if (!model.movieId) {
+		if (!model.movie) {
 			throw Error('Movie is required');
 		}
 		if (!model.profile) {

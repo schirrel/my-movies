@@ -1,17 +1,18 @@
 <template>
   <div class="container">
-    <div class="row">
-      <genres v-model="genre"> </genres>
-    </div>
+    <h3>Popular</h3>
+    <popular></popular>
   </div>
 </template>
 
 <script>
-import GenreSelect from "@/components/GenreSelect";
+// import GenreSelect from "@/components/GenreSelect";
+import PopularMovies from "@/components/movie/PopularMovies";
 export default {
   name: "Home",
    components: {
-    "genres": GenreSelect,
+    // "genres": GenreSelect,
+    "popular": PopularMovies
   },
   data() {
     return { genre: null };

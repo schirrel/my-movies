@@ -1,5 +1,8 @@
 import Storage from '@/utils/Storage';
+import Vue from "vue";
 import {$ApiRequest, $api} from './ApiRequest';
+
+
 
 export default class Auth {
 
@@ -8,6 +11,7 @@ export default class Auth {
  * @returns {Function} Promise
  */
 static register(value) {
+  $ApiRequest.setToken(value);
   return Storage.set('my-movie-jwt',value);
 }
 /**
@@ -21,14 +25,11 @@ static unregister() {
  * @param {Function} success
  */
   static login(credentials, success) {
-    /*return this.loginFake(credentials, success);
-  */
- console.log($api);
- console.log($ApiRequest);
+    
   return $ApiRequest.api
     .post('/login', credentials)
     .then((response) =>{
-      this.register(response).then((success))
+      this.register(response.data).then((success))
     });
 }
 
@@ -61,3 +62,19 @@ static logoutFake(success) {
 }
   
 }
+
+
+$api.interceptors.response.use(function (response) {
+return response;
+}, function (error) {
+  if(error.response.status==401) {
+    Vue.$toast.error("Quem pena, sua sessão expirou!");
+    setTimeout(()=>{
+  
+      Auth.logout(()=>{    
+        window.location = '/login';
+      });
+    },300)
+  }
+return Promise.reject(error);
+});

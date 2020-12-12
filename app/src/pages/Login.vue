@@ -110,7 +110,6 @@ export default {
     doLogin: function () {
       let vueInstance = this;
       Auth.login(this.auth, () => {
-        console.log("loogo");
         vueInstance.$router.push({ name: "secure.profile" });
       });
     },

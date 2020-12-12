@@ -1,12 +1,10 @@
 import axios from "axios";
-
 const api = axios.create({
     baseURL: "http://localhost:8081/api",
 });
-
 const ApiRequest = { api: api };
-ApiRequest.setHeader = (header, value) => {
-    ApiRequest.request.defaults.headers[header] = value;
+ApiRequest.setToken = ( value) => {
+    ApiRequest.api.defaults.headers.Authorization = 'Bearer '+value;
 }
 
 const _get = (url) => {
@@ -31,9 +29,10 @@ function createRequest($url) {
         url: $url,
         get: (_url)=>{return _get($url+_url)},
         post:  (_url,data)=>{return _post($url+_url, data)},
+        save:  (data)=>{return _post($url, data)},
         put:  (_url,data)=>{return _put($url+_url, data)},
         delete:  (_url, data)=>{return _delete($url+_url, data)},
-        setHeader: ApiRequest.setHeader 
+        setToken: ApiRequest.setToken 
     }
 
 }

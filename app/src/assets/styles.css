@@ -10,9 +10,6 @@ html, body {
     text-align: center;
 }
 
-.v-notices .v-toast .v-toast-text {
-    font-size: 1.5rem !important;
-}
 
 .footer {
     padding: 8rem 0 2rem
