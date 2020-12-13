@@ -1,14 +1,41 @@
 import axios from "axios";
-const api = axios.create({
-    baseURL: "http://localhost:8081/api",
+import Storage from "@/utils/Storage";
+import { setupCache } from 'axios-cache-adapter'
+import RequestObservable from '@/services/RequestObservable';
+
+import AuthorizationInterceptor from '@/services/interceptors/AuthorizationInterceptor';
+import LoadingInterceptor from '@/services/interceptors/LoadingInterceptor';
+import SessionInterceptor from '@/services/interceptors/SessionInterceptor';
+
+const cache = setupCache({
+    maxAge: 1 * 60 * 1000
 });
-const ApiRequest = { api: api };
-ApiRequest.setToken = (value) => {
-    ApiRequest.api.defaults.headers.Authorization = 'Bearer ' + value;
+
+const requestCached = {
+    maxAge: 15 * 60 * 1000
 }
 
-const _get = (url, params={}) => {
-    return ApiRequest.api.get(url, { params });
+const api = axios.create({
+    baseURL: "http://localhost:8081/api",
+    adapter: cache.adapter
+});
+
+const ApiRequest = { api: api };
+ApiRequest.observable = new RequestObservable();
+console.log(ApiRequest.observable);
+
+Storage.get("my-movie-jwt").then((token) => {
+    ApiRequest.api.defaults.headers.Authorization = 'Bearer ' + token;
+    AuthorizationInterceptor(ApiRequest.api, token);
+
+});
+
+LoadingInterceptor(ApiRequest.api, (id, remove) => {
+    ApiRequest.observable.updateRequests(id, remove)
+});
+SessionInterceptor(ApiRequest.api);
+const _get = (url, params = {}, hasCache) => {
+    return ApiRequest.api.get(url, { params, cache: hasCache ? requestCached : {} });
 }
 const _post = (url, data) => {
     return ApiRequest.api.post(url, data);
@@ -24,20 +51,21 @@ const _delete = (url, data) => {
 
 }
 
-function createRequest($url) {
+ApiRequest.createRequest = ($url, hasCache) => {
     return {
         url: $url,
-        get: (_url) => { return _get($url + _url) },
-        search: (params) => { return _get($url+'/search', params) },
+        get: (_url) => { return _get($url + _url, hasCache) },
+        search: (params) => { return _get($url + '/search', params, hasCache) },
         post: (_url, data) => { return _post($url + _url, data) },
-        save: (data) => { return _post($url, data) },
+        create: (data) => { return _post($url, data) },
+        update: (data) => { return _put(`${$url}/${data.id}`, data) },
         put: (_url, data) => { return _put($url + _url, data) },
-        delete: (_url, data) => { return _delete($url + _url, data) },
-        setToken: ApiRequest.setToken
+        delete: (_url, data) => { return _delete($url + _url, data) }
     }
 
 }
 
 export const $api = api;
-export const $ApiRequest = ApiRequest;
-export default createRequest;
+ApiRequest.watchRequest = callback => ApiRequest.observable.watch(callback);
+
+export default ApiRequest;

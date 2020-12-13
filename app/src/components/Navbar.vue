@@ -70,44 +70,22 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
               <li class="nav-link">
-                <a href="#" class="nav-item dropdown-item"
-                  >Mike John responded to your email</a
-                >
-              </li>
-              <li class="nav-link">
-                <a href="javascript:void(0)" class="nav-item dropdown-item"
-                  >You have 5 more tasks</a
-                >
-              </li>
-              <li class="nav-link">
-                <a href="javascript:void(0)" class="nav-item dropdown-item"
-                  >Your friend Michael is in town</a
-                >
-              </li>
-              <li class="nav-link">
-                <a href="javascript:void(0)" class="nav-item dropdown-item"
-                  >Another notification</a
-                >
-              </li>
-              <li class="nav-link">
-                <a href="javascript:void(0)" class="nav-item dropdown-item"
-                  >Another one</a
+                <a href="" class="nav-item dropdown-item"
+                  >Nenhuma notificação</a
                 >
               </li>
             </ul>
           </li>
 
           <li class="nav-item">
-            
-          <router-link class="nav-link btn btn-default d-none d-lg-block" to="/">
-              {{ profile ? profile.name : "" }} 
-   </router-link>   
+            <router-link class="nav-link btn btn-default" to="/">
+              {{ profile ? profile.name : "" }}
+            </router-link>
           </li>
           <li class="nav-item">
-            
-          <router-link class="nav-link d-none d-lg-block" to="/logout ">
+            <router-link class="nav-link" to="/logout ">
               <i class="tim-icons icon-button-power"></i> Sair
-              </router-link>   
+            </router-link>
           </li>
         </ul>
       </div>
@@ -129,12 +107,12 @@ export default {
       this.profile = res;
     });
   },
-  watch:{
-    $route (){
-         Storage.get("my-movie-profile").then((res) => {
-      this.profile = res;
-    });
-    }
-}
+  watch: {
+    $route() {
+      Storage.get("my-movie-profile").then((res) => {
+        this.profile = res;
+      });
+    },
+  },
 };
 </script>

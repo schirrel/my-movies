@@ -2,11 +2,9 @@ import { uniqueId } from '@/utils/Util.js';
 
 export default class RequestObservable {
 
-    constructor(parent) {
+    constructor() {
         this.requests = new Set();
         this.observables = new Map();
-        this.parent = parent;
-        this._identifier = `RequestObservable-${uniqueId()}`;
     }
 
     watch(observable) {
@@ -22,7 +20,6 @@ export default class RequestObservable {
     }
 
     updateRequests(id, remove) {
-        this.parent && this.parent.updateRequests && this.parent.updateRequests(id, remove)
         if (remove) {
             this.requests.delete(id);
         } else {

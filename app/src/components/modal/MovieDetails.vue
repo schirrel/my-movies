@@ -152,7 +152,7 @@ export default {
       };
 
       $movie
-        .save(listed)
+        .create(listed)
         .then((res) => {
           this.model.list = res;
           this.$toast.success("Filme adicionado a sua lista");

@@ -14,10 +14,14 @@ import './assets/creative-tim/blk-design-system/assets/css/blk-design-system.css
 import './assets/creative-tim/blk-design-system/assets/css/nucleo-icons.css';
 
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
+import jquery from 'jquery';
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle';
+
+import initDesignSystem from './assets/creative-tim/blk-design-system/assets/js/blk-design-system';
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue);
-
+initDesignSystem(jquery, bootstrap);
 Vue.use(VueToast, {  
   position: 'top',
   duration: 10000,

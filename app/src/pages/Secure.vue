@@ -1,5 +1,6 @@
 <template>
   <main id="app">
+    <loading> </loading>
     <div class="wrapper">
       <div class="page-header">
         <navbar></navbar>
@@ -16,14 +17,15 @@
 
 <script>
 import Navbar from "@/components/Navbar";
+import Loading from "@/components/Loading";
 export default {
   name: "App",
   components: {
     navbar: Navbar,
+    loading: Loading
   },
   data() {
     return {
-      loading: false,
     };
   },
   mounted() {},

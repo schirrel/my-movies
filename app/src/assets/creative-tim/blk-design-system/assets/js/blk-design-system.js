@@ -16,7 +16,7 @@
 
  */
 
-function initDesignSystem($){
+function initDesignSystem(){
   
 var transparent = true;
 var big_image;

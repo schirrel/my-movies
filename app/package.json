@@ -1,5 +1,5 @@
 {
-  "name": "my-movieseb-app",
+  "name": "my-movies-app",
   "version": "1.1.0",
   "description": "Front web app for My Movies",
   "author": "Alan Schio<alanbschio@gmail.com>",
@@ -15,6 +15,7 @@
     "@fortawesome/fontawesome-free": "^5.15.1",
     "@schirrel/request": "^1.2.0",
     "axios": "^0.21.0",
+    "axios-cache-adapter": "^2.5.0",
     "bootstrap": "^4.5.3",
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",

@@ -14,6 +14,7 @@
             href="#"
             @click="selectProfile($event, profile)"
           >
+            <span v-if="profile.main" class="main-profile">Perfil Principal</span>
             <i v-if="!profile.editing" class="tim-icons icon-single-02"> </i>
             <h5 v-if="!profile.editing">{{ profile.name }}</h5>
             <div v-if="profile.editing || editingAll">
@@ -85,7 +86,7 @@ export default {
     };
   },
   mounted() {
-    this.loadProfile();
+    setTimeout(this.loadProfile, 500);
   },
   methods: {
     async loadProfile() {
@@ -129,11 +130,17 @@ export default {
       event.preventDefault();
       this.editingAll = !this.editingAll;
     },
-    defineMainProfile: function (event, profile) {
+    defineMainProfile: async function (event, profile) {
       event.preventDefault();
-      this.profiles.forEach((a) => {
-        a.main = a.id == profile.id;
-      });
+      let current =  this.profiles.find(a => a.main);
+      current.main = false;
+      profile.main = true;
+      
+     await $profile.update(current);
+     await $profile.update(profile);
+      this.loadProfile();
+
+      
     },
   },
   computed: {
@@ -160,11 +167,25 @@ h5 {
 .profiles ul {
   justify-content: center;
 }
+li.nav-item.profile-item {
+  position: relative;
+}
 li.nav-item.profile-item a {
   border: 2px solid transparent;
 }
 
-li.nav-item.profile-item.main-profile a {
+/* li.nav-item.profile-item.main-profile a {
   border: 2px solid white;
+} */
+
+span.main-profile {
+ position: absolute;
+    top: 5px;
+    width: calc(100% - 10px);
+    left: 0;
+    right: 0;
+    margin: 0;
+    text-align: center;
+    font-size: .8em;
 }
 </style>
