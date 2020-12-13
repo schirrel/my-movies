@@ -2,11 +2,11 @@
   <div class="wrapper">
     <div class="page-header">
       <nav
-        class="navbar navbar-expand-lg fixed-top navbar-transparent"
+        class="navbar navbar-expand-sm fixed-top navbar-transparent"
         color-on-scroll="100"
       >
         <div class="container">
-          <div class="navbar-translate">
+          <div class="">
             <a
               class="navbar-brand"
               href="https://demos.creative-tim.com/blk-design-system/index.html"
@@ -82,7 +82,7 @@
                     />
                   </div>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer text-right">
                   <button class="btn btn-info btn-round btn-lg">
                     Acessar My Movies
                   </button>
@@ -134,5 +134,11 @@ export default {
   color: white !important;
   padding-left: 10px;
   text-transform: capitalize !important;
+}
+.navbar > .container {
+  margin-top: 5px;
+  max-width: 100%;
+  margin-bottom: 5px;
+  margin-right: 0;
 }
 </style>
