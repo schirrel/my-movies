@@ -76,9 +76,13 @@
               </li>
             </ul>
           </li>
-
+        <li class="nav-item">
+           <button type="button" class="nav-link btn btn-default" @click="openSearch"> 
+           <i class="tim-icons icon-zoom-split"></i> 
+           </button>
+          </li>
           <li class="nav-item">
-            <router-link class="nav-link btn btn-default" to="/">
+            <router-link  to="/">
               {{ profile ? profile.name : "" }}
             </router-link>
           </li>
@@ -100,6 +104,7 @@ export default {
   data() {
     return {
       profile: null,
+      
     };
   },
   mounted() {
