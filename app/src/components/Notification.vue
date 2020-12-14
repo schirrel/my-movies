@@ -13,9 +13,9 @@
       <p class="d-lg-none">Notifications</p>
     </a>
     <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-      <template v-for="(message, index) in data">
+      <template v-for="(reminder, index) in list">
         <li :key="index" class="nav-link">
-          <a href="#" class="nav-item dropdown-item">{{ message }}</a>
+          <a href="#" class="nav-item dropdown-item">{{ reminder }}</a>
         </li>
       </template>
 
@@ -25,11 +25,31 @@
 </template>
 
 <script>
+
+import { $reminder } from "@/services/Resources";
+import Storage from "@/utils/Storage";
 export default {
   name: "Notification",
-  mounted() {},
-  data() {
-    return {};
+  mounted() {
+    let vueInstance = this;
+    Storage.get("my-movie-profile").then((res) => {
+      vueInstance.profile = res.id;
+    });
   },
+  data() {
+    return {
+      profile: null};
+  },
+  
+  methods: {
+  getList: async function () {
+       this.list = [];
+       let result = await $reminder.search({
+        profile: this.profile,
+      });      
+      this.list = result.data;      
+      
+    }
+  }
 };
 </script>
