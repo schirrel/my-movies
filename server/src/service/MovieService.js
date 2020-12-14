@@ -1,6 +1,7 @@
 const Service = require('./Service');
 const MovieRepository = require('../repository/MovieRepository');
 const Movie = require('../models/Movie');
+const TMDBService = require('./TMDBService');
 
 class MovieService extends Service {
 	constructor() {
@@ -27,6 +28,17 @@ class MovieService extends Service {
 			return err;
 		}
 	}
+	async myList(profile){
+		let list = await super.search({profile: profile});	
+		let movies = [];
+		list.forEach(async(item)=>{
+		let movie = await TMDBService.movie.get(item.movie);
+			movies.push(movie);
+		});
+		
+		return movies;
+	
+	} 
 }
 
 
