@@ -22,7 +22,7 @@
           </div>
         <div class="modal-content">
             <div class="modal-header">
-              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="SEARCH">
+              <input type="text" class="form-control" id="inlineFormInputGroup" v-model="searchedText" placeholder="SEARCH">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <i class="tim-icons icon-simple-remove"></i>
               </button>
@@ -40,7 +40,8 @@ export default {
   name: "SearchModal",
   data() {
     return {
-      showModal: false
+      showModal: false,
+      searchedText: ''
     };
   },
   mounted() {
