@@ -14,7 +14,8 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'ci skip')"
-   
+    steps: 
+    - uses: actions/checkout@v2
   build:
 
     runs-on: ubuntu-latest
