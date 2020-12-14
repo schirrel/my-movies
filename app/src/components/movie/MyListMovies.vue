@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import { movies } from "@/services/TMDBService";
 import { $movie } from "@/services/Resources";
 import MoviesList from "@/components/movie/MoviesList";
 export default {
