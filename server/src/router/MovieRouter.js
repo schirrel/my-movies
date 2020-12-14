@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
 	try {
 		let entity = await this.service.create(dto);
 		if (entity.erro) {
-			res.status(500).send(entity);
+			res.status(500).send(entity.message);
 		} else
 			res.send(entity);
 	} catch (err) {

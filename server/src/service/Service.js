@@ -3,7 +3,7 @@ const logger = require('../utils/logger');
 
 class Service {
 	constructor(repository, table) {
-		if(!repository || !table) {
+		if (!repository || !table) {
 			throw new Error("Repository and Model are both required");
 		}
 		this.repository = new repository();
@@ -13,12 +13,29 @@ class Service {
 		return await this.repository.get(id);
 	}
 	async create(model) {
-		let result =  await this.repository.create(model);
-		return result.rows[0];
+		let result = await this.repository.create(model);
+		if (result.erro) {
+			let err = result;
+			if (err.constraint) {
+				if (err.routine.toLowerCase().indexOf("unique") != 1) {
+					let columnName = err.constraint.substring(err.constraint.indexOf("_"))
+					throw {
+						erro: true,
+						message: 'Violação de constraint única: ' + columnName
+
+					}
+				}
+			}
+		}
+		else
+			return result.rows[0];
 	}
 	async update(model) {
-		let result =  await this.repository.update(model);
-		return result.rows[0];
+		let result = await this.repository.update(model);
+		if (result.erro)
+			throw new Error(result);
+		else
+			return result.rows[0];
 	}
 
 	async delete(id) {

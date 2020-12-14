@@ -1,20 +1,17 @@
 <template>
-<section>
-
-  <ul class="movie-list">
-    <li v-for="(movie, index) in data" :key="index" @click="openMovieDetails($event, movie)">
-      <div class="card">
-        <div class="row movie-list-action">
-          <div class="col-6">
+  <section>
+    <ul class="movie-list">
+      <li v-for="(movie, index) in data" :key="index">
+        <div class="card">
+          <div class="movie-list-action">
             <button
               type="button"
               class="btn btn-link hover-red"
               title="Adicionar a Lista"
+              @click="addToWatchList($event, movie)"
             >
               <i class="tim-icons icon-heart-2"></i>
             </button>
-          </div>
-          <div class="col-6">
             <button
               type="button"
               class="btn btn-link hover-yellow"
@@ -23,43 +20,72 @@
               <i class="tim-icons icon-time-alarm"></i>
             </button>
           </div>
+          <div
+            class="card-body movie-item-content"
+            @click="openMovieDetails($event, movie)"
+          >
+            <img
+              :src="'https://image.tmdb.org/t/p/w200/' + movie.poster_path"
+            />
+            <div class="movie-title">
+              {{ movie.title }}
+            </div>
+          </div>
         </div>
-        <img :src="'https://image.tmdb.org/t/p/w200/' + movie.poster_path" />
-        <div class="movie-title">
-            {{ movie.title }}
-          
-        </div>
-      </div>
-    </li>
-  </ul>
-  
-  <movie-details :movie="selected"></movie-details>
-</section>
+      </li>
+    </ul>
+
+    <movie-details :movie="selected"></movie-details>
+  </section>
 </template>
 
 <script>
-
 import MovieDetails from "@/components/modal/MovieDetails";
+import { $movie } from "@/services/Resources";
+import Storage from "@/utils/Storage";
 export default {
   name: "MovieList",
-     components: {
+  components: {
     "movie-details": MovieDetails,
   },
   props: ["data"],
   data() {
     return {
-      selected: null
+      selected: null,
+      profile: null,
     };
   },
-  mounted() {},
+  mounted() {
+    let vueInstance = this;
+    Storage.get("my-movie-profile").then((res) => {
+      vueInstance.profile = res.id;
+    });
+  },
   watch: {
     value() {},
   },
   methods: {
-    openMovieDetails:function(event, movie) {
+    openMovieDetails: function (event, movie) {
       event.preventDefault();
-this.selected = movie.id;
-    }
+      this.selected = movie.id;
+    },
+    addToWatchList(event, movie) {
+      event.preventDefault();
+      let listed = {
+        movie: movie.id,
+        profile: this.profile,
+      };
+
+      $movie
+        .create(listed)
+        .then((res) => {
+          movie.list = res;
+          this.$toast.success("Filme adicionado a sua lista");
+        })
+        .catch((err) => {
+          this.$toast.error(err.response.data || err.message);
+        });
+    },
   },
 };
 </script>
@@ -89,6 +115,8 @@ li .movie-list-action {
   background: rgba(0, 0, 0, 0.5);
   margin: 0;
   transition: all 300ms ease;
+  display: flex;
+    justify-content: space-around;
 }
 li:hover .movie-list-action {
   opacity: 1;
@@ -111,5 +139,13 @@ li .movie-list-action .btn {
   background: rgba(0, 0, 0, 0.8);
   text-align: center;
   font-weight: 700;
+  position: relative;
+}
+.movie-item-content {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0 !important;
+  height: 100%;
 }
 </style>

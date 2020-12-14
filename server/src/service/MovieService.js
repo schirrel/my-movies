@@ -14,14 +14,18 @@ class MovieService extends Service {
 		if (!model.profile) {
 			throw Error('Profile is required');
 		}
-    //User utils isDefined
+		//User utils isDefined
 		if (model.watched == "undefined" || model.watched == null) {
-		model.watched= false;
+			model.watched = false;
 		}
 	}
 	async create(model) {
 		this.validateCreate(model);
-		return await super.create(model);
+		try {
+			return await super.create(model);
+		} catch (err) {
+			return err;
+		}
 	}
 }
 
