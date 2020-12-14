@@ -26,9 +26,12 @@ const movies = {
     popular:  async (page) => {
         let result = await api.get('movie/popular',{page:page});
         return result.data;      
+    },get : async(movieId) => {
+        let result = await api.get(`movie/${movieId}`);
+            return result.data;      
+    }
 }
-}
-const sugestion  = (profile) =>{} 
+
 module.exports = {
     genres, movies
 }
