@@ -33,6 +33,9 @@ const movies = {
 }, get : async(movieId) => {
     let result = await api.get(`movie/${movieId}`);
         return result.data;      
+}, search : async(text) => {
+    let result = await api.search(`search`,{query:text});
+        return result.data;      
 }
 }
 export {
