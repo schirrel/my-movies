@@ -14,7 +14,6 @@ const auth = async (req, res, next) => {
     } catch (error) {
         //TODO IMPLEMENT TOKEN EXPIRED RETURN
         console.log('Erro')
-        console.log(error)
         res.status(401).send({ error: 'Please authenticate!' })
     }
 }

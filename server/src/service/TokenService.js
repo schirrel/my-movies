@@ -20,8 +20,14 @@ class TokenService {
 
 	}
 	static decode(token){
+		try {
 		const decoded = jwt.verify(token, process.env.SECRET);
 		return decoded;     
+	}catch(err) {
+		console.log("error at jwt")
+		console.log(token);
+		
+	}
 	}
 
 	static getToken(req){

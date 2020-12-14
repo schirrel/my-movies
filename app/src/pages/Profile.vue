@@ -14,7 +14,9 @@
             href="#"
             @click="selectProfile($event, profile)"
           >
-            <span v-if="profile.main" class="main-profile">Perfil Principal</span>
+            <span v-if="profile.main" class="main-profile"
+              >Perfil Principal</span
+            >
             <i v-if="!profile.editing" class="tim-icons icon-single-02"> </i>
             <h5 v-if="!profile.editing">{{ profile.name }}</h5>
             <div v-if="profile.editing || editingAll">
@@ -67,7 +69,7 @@
     </ul>
 
     <div class="col-12 text-center mt-3">
-      <a href="#" @click="removeProfiles">
+      <a href="#" @click="removeOrEdit">
         <i class="tim-icons icon-trash-simple"></i> Editar perfis</a
       >
     </div>
@@ -89,8 +91,9 @@ export default {
     setTimeout(this.loadProfile, 500);
   },
   methods: {
-    async loadProfile() {
-      let result = await $profile.search();
+    async loadProfile(clearCache) {
+      this.profiles = [];
+      let result = await $profile.search(clearCache);
       this.profiles = result.data;
     },
     selectProfile: function (event, profile) {
@@ -107,40 +110,35 @@ export default {
       if (this.profiles.length < 6 && !this.hasEditing) {
         this.profiles.push({
           name: `Perfil ${this.profiles.length}`,
-          editing: true
+          editing: true,
         });
       }
-      
-      
     },
     createProfile: async function (event, profile) {
       event.preventDefault();
-      
+
       delete profile.editing;
-     await $profile.create(profile);
+      await $profile.create(profile);
       this.loadProfile();
-      
     },
     deleteProfile: async function (event, profile) {
-      event.preventDefault();      
+      event.preventDefault();
       await $profile.delete(profile.id);
       this.loadProfile();
     },
-    removeProfiles: function (event) {
+    removeOrEdit: function (event) {
       event.preventDefault();
       this.editingAll = !this.editingAll;
     },
     defineMainProfile: async function (event, profile) {
       event.preventDefault();
-      let current =  this.profiles.find(a => a.main);
-      current.main = false;
-      profile.main = true;
-      
-     await $profile.update(current);
-     await $profile.update(profile);
-      this.loadProfile();
 
-      
+      let result = await $profile.main(profile);
+      console.log(result);
+      if (result.data.main) {
+        this.editingAll = false;
+        this.loadProfile(true);
+      }
     },
   },
   computed: {
@@ -164,6 +162,10 @@ h5 {
   line-height: 1em !important;
   padding: 0;
 }
+.profile-item .col-sm-6 {
+  margin: 0;
+  padding: 2px;
+}
 .profiles ul {
   justify-content: center;
 }
@@ -179,13 +181,13 @@ li.nav-item.profile-item a {
 } */
 
 span.main-profile {
- position: absolute;
-    top: 5px;
-    width: calc(100% - 10px);
-    left: 0;
-    right: 0;
-    margin: 0;
-    text-align: center;
-    font-size: .8em;
+  position: absolute;
+  top: 5px;
+  width: calc(100% - 10px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 0.8em;
 }
 </style>

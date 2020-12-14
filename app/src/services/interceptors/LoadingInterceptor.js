@@ -1,32 +1,6 @@
 import { uniqueId } from '@/utils/Util.js';
 
-// const requests = new Set();
-// const observables = new Map();
-
-// const watch = (observable) => {
-//     let id = uniqueId();
-//     observables.set(id, observable)
-//     return id;
-// }
-// const callObservables = () => {
-//     // eslint-disable-next-line no-unused-vars
-//     for (var [key, value] of observables) {
-//         value(!!requests.size);
-//     }
-// }
-// const updateRequests = (id, remove) => {
-//     if (remove) {
-//         requests.delete(id);
-//     } else {
-//         requests.add(id);
-//     }
-//     callObservables();
-// }
-
-// export const watchRequest = callback => watch(callback);
-
 export default function LoadingInterceptor(api, updateRequests) {
-    console.log(updateRequests)
     api.interceptors.request.use(
          (config) => {
             let requestId = uniqueId();
@@ -35,6 +9,7 @@ export default function LoadingInterceptor(api, updateRequests) {
             return config;
         },
         function (error) {
+
             return Promise.reject(error);
         }
     );
@@ -46,6 +21,8 @@ export default function LoadingInterceptor(api, updateRequests) {
             return response;
         },
         function (error) {
+            let requestId = error.response.config.headers['rldid'];
+            updateRequests(requestId, true);
             return Promise.reject(error);
         }
     );

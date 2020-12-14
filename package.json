@@ -2,21 +2,19 @@
   "name": "my-movies",
   "version": "1.0.0",
   "description": "",
-  "scripts": {    
+  "scripts": {
     "prepare-project": "cd server && npm install && cd ../app && npm install",
     "start": "echo \"Started\" && cd server && npm run start",
     "test": "echo \"No tests yet\" ",
-    "build-app":"cd app && npm run build",
-    "build-server":"cd server && npm run build",
+    "build-app": "cd app && npm run build",
+    "build-server": "cd server && npm run build",
     "build": "npm run build-app && npm run build-server"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/schirrel/my-movies.git"
   },
-  "devDependencies": {
-   
-  },
+  "devDependencies": {},
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
@@ -26,8 +24,5 @@
   "bugs": {
     "url": "https://github.com/schirrel/my-movies/issues"
   },
-  "homepage": "https://github.com/schirrel/my-movies#readme",
-  "dependencies": {
-    "bootstrap-vue": "^2.20.1"
-  }
+  "homepage": "https://github.com/schirrel/my-movies#readme"
 }

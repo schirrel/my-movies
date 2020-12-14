@@ -1,11 +1,14 @@
 import ApiRequest from './ApiRequest';
 var _user = ApiRequest.createRequest('/user');
 var _movie = ApiRequest.createRequest('/movie');
-var _profile = ApiRequest.createRequest('/profile', true);
+var _profile = ApiRequest.createRequest('/profile');
+_profile.main = (model) => {
+  return _profile.put(`/main/${model.id}`, model);
+}
 var _notification = ApiRequest.createRequest('/notification');
 var _reminder = ApiRequest.createRequest('/reminder');
-export const $user =_user;
-export const $movie =_movie;
+export const $user = _user;
+export const $movie = _movie;
 /* 
 ADD CACHE TO MOVIE SEARCH
 , {
@@ -13,6 +16,6 @@ ADD CACHE TO MOVIE SEARCH
     maxAge: 30 * 60 * 1000
   }
 */
-export const $profile =_profile;
-export const $notificaition =_notification;
-export const $reminder =_reminder;
+export const $profile = _profile;
+export const $notificaition = _notification;
+export const $reminder = _reminder;
