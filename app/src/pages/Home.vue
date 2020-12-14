@@ -1,18 +1,26 @@
 <template>
   <div class="container">
+  <section>  
+    <h3>My List</h3>
+    <my-list></my-list>
+  </section>
+    <section>  
     <h3>Popular</h3>
     <popular></popular>
+  </section>
   </div>
 </template>
 
 <script>
 // import GenreSelect from "@/components/GenreSelect";
 import PopularMovies from "@/components/movie/PopularMovies";
+import MyListMovies from "@/components/movie/MyListMovies";
 export default {
   name: "Home",
    components: {
     // "genres": GenreSelect,
-    "popular": PopularMovies
+    "popular": PopularMovies,
+    "my-list" : MyListMovies
   },
   data() {
     return { genre: null };
