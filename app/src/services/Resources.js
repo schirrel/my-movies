@@ -2,7 +2,7 @@ import ApiRequest from './ApiRequest';
 var _user = ApiRequest.createRequest('/user');
 var _movie = ApiRequest.createRequest('/movie');
 _movie.list = (profileId) => {
-  return _movie.get(`/$profileId}/list`);
+  return _movie.get(`/${profileId}/list`);
 }
 var _profile = ApiRequest.createRequest('/profile');
 _profile.main = (model) => {
