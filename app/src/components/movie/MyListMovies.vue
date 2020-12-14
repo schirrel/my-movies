@@ -27,10 +27,10 @@ export default {
        this.list = [];
       /*let data = await movies.popular();
       this.list = data.results;*/
-       let result = await $movie.search({
+       let result = await $movie.list({
         profile: this.profile,
-      });
-   // CALL FROM BACKEND TO RETRIEVE ALSO MOVIE INFO
+      });      
+      this.list = result.data;
       
       
     },
