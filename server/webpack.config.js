@@ -22,7 +22,15 @@ module.exports = {
 	},
 	target: 'node',
 	externals: [nodeExternals()],
-
+module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ["babel-loader"]
+      }
+    ]
+  },
 	plugins: [
 	  // This makes it possible for us to safely use env vars on our code
 	  new webpack.DefinePlugin({
