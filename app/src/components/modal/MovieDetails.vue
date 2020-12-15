@@ -119,6 +119,9 @@ import Storage from "@/utils/Storage";
 export default {
   name: "MovieDetails",
   props: ["movie"],
+  components: {
+    "movie-reminder": Reminder,
+  },
   data() {
     return {
       showModal: false,
