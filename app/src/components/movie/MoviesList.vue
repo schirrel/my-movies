@@ -14,7 +14,7 @@
             </button>
              <button
               type="button"
-              class="btn btn-link
+              class="btn btn-link"
               title="Sinalizar como assistido"
             @click="setWatched($event, movie)"
             >
