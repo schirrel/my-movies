@@ -73,7 +73,7 @@ import Reminder from "@/components/modal/Reminder";
 import Storage from "@/utils/Storage";
 
 export default {
-  props: ["show", "onClose", 'profile'],
+  props: ["show", "onClose"],
   name: "ModalSearch",
    components: {
     "movie-reminder": Reminder,
