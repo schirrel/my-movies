@@ -5,7 +5,7 @@ class Reminder extends Model{
 	this.addColumn('movie', 'MOVIE_ID');
 	this.addColumn('reminderAt', 'REMINDER_AT');
 	this.addColumn('profile', 'PROFILE_ID');
-	this.addColumn('date', 'DATE');  
+	this.addColumn('createdAt', 'CREATED_AT');  
 	this.setValues(args);
 	}
 }

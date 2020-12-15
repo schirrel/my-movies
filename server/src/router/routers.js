@@ -6,6 +6,7 @@ router.use('/user', require("./UserRouter"));
 router.use('/profile', require("./ProfileRouter"));
 router.use('/movie', require("./MovieRouter"))
 router.use(require("./SessionRouter"));
+router.use('/reminder', require("./ReminderRouter"));
 
 
 logger.info('Router setted');

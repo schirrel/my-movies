@@ -2,7 +2,7 @@ import { uniqueId } from '@/utils/Util.js';
 
 export default function LoadingInterceptor(api, updateRequests) {
     api.interceptors.request.use(
-         (config) => {
+        (config) => {
             let requestId = uniqueId();
             config.headers['rldid'] = requestId;
             updateRequests(requestId);
@@ -15,14 +15,19 @@ export default function LoadingInterceptor(api, updateRequests) {
     );
 
     api.interceptors.response.use(
-         (response) => {
-            let requestId = response.config.headers['rldid'];
-            updateRequests(requestId, true);
+        (response) => {
+            if (response && response.config) {
+                let requestId = response.config.headers['rldid'];
+                updateRequests(requestId, true);
+            }
             return response;
         },
         function (error) {
-            let requestId = error.response.config.headers['rldid'];
-            updateRequests(requestId, true);
+            if (error && error.response && error.response.config) {
+
+                let requestId = error.response.config.headers['rldid'];
+                updateRequests(requestId, true);
+            }
             return Promise.reject(error);
         }
     );

@@ -1,4 +1,5 @@
 let router = require("express").Router();
+let middleware = require("./middleware/AuthMiddleware");
 const ReminderService = require('../service/ReminderService');
 
 this.service = new ReminderService();

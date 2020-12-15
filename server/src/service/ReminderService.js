@@ -8,10 +8,8 @@ class ReminderService extends Service {
 	}
 
 	async create(model) {
-		model.data = new Date();
 		let result =  await super.create(model);
-		let entity = result.rows[0];
-		return entity;
+		return result;
 	}
 }
 

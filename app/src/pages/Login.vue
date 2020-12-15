@@ -9,7 +9,7 @@
           <div class="">
             <a
               class="navbar-brand"
-              href="https://demos.creative-tim.com/blk-design-system/index.html"
+              href="#"
               rel="tooltip"
               title=""
               data-placement="bottom"
@@ -28,11 +28,11 @@
               </div>
             </div>
             <ul class="navbar-nav">
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <router-link class="nav-link" to="/login ">
                   <small> Recuperar Senha </small>
                 </router-link>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <router-link class="nav-link btn btn-primary" to="/register">
                   Cadastre-se

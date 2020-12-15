@@ -28,7 +28,7 @@ router.get('/search', async (req, res) => {
 });
 router.get('/:id/list', async (req, res) => {
 	let id = req.params.id;
-	let list = await this.service.myList(req.query);
+	let list = await this.service.myList(id);
 	res.send(list);
 	return;
 });

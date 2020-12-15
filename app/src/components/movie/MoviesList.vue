@@ -16,6 +16,7 @@
               type="button"
               class="btn btn-link hover-yellow"
               title="Criar Lembrete"
+            @click="createReminder($event, movie)"
             >
               <i class="tim-icons icon-time-alarm"></i>
             </button>
@@ -35,24 +36,28 @@
       </li>
     </ul>
 
-    <movie-details :movie="selected"></movie-details>
+    <movie-details :movie="selected" :profile="profile"></movie-details>
+    <movie-reminder :movie="toReminde" :profile="profile"></movie-reminder>
   </section>
 </template>
 
 <script>
 import MovieDetails from "@/components/modal/MovieDetails";
+import Reminder from "@/components/modal/Reminder";
 import { $movie } from "@/services/Resources";
 import Storage from "@/utils/Storage";
 export default {
   name: "MovieList",
   components: {
     "movie-details": MovieDetails,
+    "movie-reminder": Reminder,
   },
   props: ["data"],
   data() {
     return {
       selected: null,
       profile: null,
+      toReminde: null
     };
   },
   mounted() {
@@ -65,6 +70,10 @@ export default {
     value() {},
   },
   methods: {
+    createReminder: function (event, movie) {
+      event.preventDefault();
+      this.toReminde = movie.id;
+    },
     openMovieDetails: function (event, movie) {
       event.preventDefault();
       this.selected = movie.id;

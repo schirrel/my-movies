@@ -9,18 +9,6 @@
         role="dialog"
       >
         <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-actions">
-            <div class="col-4">
-              <button
-                type="button"
-                class="close"
-                @click="close"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          </div>
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">
@@ -39,21 +27,34 @@
                 <div class="col-sm-8 col-6">
                   <h2>{{ model.title }}</h2>
                   <h4>{{ model.tagline }}</h4>
-                  <div class="form-group">
-                      <label class="label-control">Datetime Picker</label>
-                      <input type="text" class="form-control datepicker" v-model="reminder.reminderAt" value="10/05/2016"/>
+                  <div>
+                    <label for="example-datepicker"
+                      >Quando vamos te lembrar?</label
+                    >
+                    <b-form-datepicker
+                      size="sm"
+                      id="reminder-datepicker"
+                      v-model="reminder"
+                      class="form-control input-sm"
+                    ></b-form-datepicker>
                   </div>
-
                 </div>
               </div>
 
               <br />
             </div>
-           <div class="modal-footer">
-              <button type="button" @click="saveReminder" class="btn btn-primary">
-                Confirmar Agendamento
+            <div class="modal-footer">
+              <button type="button" class="btn btn-link" @click="close">
+                Fechar
               </button>
-            </div> 
+              <button
+                type="button"
+                @click="saveReminder"
+                class="btn btn-primary"
+              >
+                Confirmar Lembrete
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -62,7 +63,7 @@
 </template>
 <script>
 import { movies } from "@/services/TMDBService";
-import { $movie } from "@/services/Resources";
+import { $movie, $reminder } from "@/services/Resources";
 import Storage from "@/utils/Storage";
 export default {
   name: "MovieDetails",
@@ -72,7 +73,7 @@ export default {
       showModal: false,
       model: null,
       profile: null,
-      reminder: {}
+      reminder: new Date(),
     };
   },
   mounted() {
@@ -98,8 +99,18 @@ export default {
       }
     },
     async saveReminder() {
-    }
-    
+      let toSave = {
+        reminderAt: this.reminder,
+        movie: this.model.id,
+        profile: this.profile,
+        createdAt: new Date(),
+      };
+      let result = await $reminder.create(toSave);
+      if (result.data.id) {
+        this.$toast.success("Lembrete Criado");
+        this.showModal = false;
+      }
+    },
   },
   watch: {
     movie: function () {

@@ -28,13 +28,13 @@ const genres =  async () => {
 const movies = {
  
     popular:  async (page) => {
-        let result = await api.get('movie/popular',{page:page});
+        let result = await api.get('movie/popular',{params:{page:page}});
         return result.data;      
 }, get : async(movieId) => {
     let result = await api.get(`movie/${movieId}`);
         return result.data;      
 }, search : async(text) => {
-    let result = await api.search(`search`,{query:text});
+    let result = await api.get(`search/movie`,{params:{page:1, query:text}});
         return result.data;      
 }
 }

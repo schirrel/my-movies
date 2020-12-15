@@ -57,7 +57,7 @@
           </div>
         </div>
         <ul class="navbar-nav">
-          <li class="dropdown nav-item">
+          <!-- <li class="dropdown nav-item">
             <a
               href="javascript:void(0)"
               class="dropdown-toggle nav-link"
@@ -75,14 +75,19 @@
                 >
               </li>
             </ul>
-          </li>
-        <li class="nav-item">
-           <button type="button" class="nav-link btn btn-default" @click="openSearch"> 
-           <i class="tim-icons icon-zoom-split"></i> 
-           </button>
+          </li> -->
+          <notification :profile="profile"></notification>
+          <li class="nav-item" >
+            <button
+              type="button"
+              class="nav-link btn btn-default"
+              @click="openSearch"
+            >
+              <i class="tim-icons icon-zoom-split"></i>
+            </button>
           </li>
           <li class="nav-item">
-            <router-link  to="/">
+            <router-link to="/" class="nav-link btn btn-primary">
               {{ profile ? profile.name : "" }}
             </router-link>
           </li>
@@ -94,18 +99,34 @@
         </ul>
       </div>
     </div>
+    <modal-search :show="showSearchModal" :onClose="closeSearch" :profile="profile"></modal-search>
   </nav>
 </template>
 
 <script>
 import Storage from "@/utils/Storage";
+import Notification from "@/components/Notification";
+import ModalSearch from "@/components/modal/ModalSearch";
 export default {
   name: "Navbar",
+  components: {
+    notification: Notification,
+    "modal-search": ModalSearch,
+  },
   data() {
     return {
       profile: null,
-      
+      showSearchModal: false,
+      profilePage: true
     };
+  },
+  methods: {
+    openSearch: function () {
+      this.showSearchModal = true;
+    },
+    closeSearch: function () {
+      this.showSearchModal = false;
+    },
   },
   mounted() {
     Storage.get("my-movie-profile").then((res) => {
@@ -117,6 +138,7 @@ export default {
       Storage.get("my-movie-profile").then((res) => {
         this.profile = res;
       });
+      this.profilePage = this.$router.currentRoute.name == "secure.profile";
     },
   },
 };

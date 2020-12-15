@@ -49,7 +49,7 @@ class Service {
 
 	async search(options) {
 		let result = await this.repository.search(options);
-		result = result.map(item => new this.table(item));
+		result = result.map(item => new this.table(item, true));
 
 		return result;
 	}

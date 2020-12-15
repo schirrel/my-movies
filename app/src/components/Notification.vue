@@ -8,8 +8,8 @@
       data-toggle="dropdown"
       aria-expanded="false"
     >
-      <div class="notification d-none d-lg-block d-xl-block"></div>
-      <i class="tim-icons icon-sound-wave"></i>
+      <div class="notification d-none d-lg-block d-xl-block" v-if="!list.length"></div>
+      <i class="tim-icons icon-bell-55"></i>
       <p class="d-lg-none">Notifications</p>
     </a>
     <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
@@ -19,7 +19,7 @@
         </li>
       </template>
 
-      <li v-if="!data.length" class="nav-link">No message</li>
+      <li v-if="!list.length" class="nav-link">No message</li>
     </ul>
   </li>
 </template>
@@ -27,18 +27,11 @@
 <script>
 
 import { $reminder } from "@/services/Resources";
-import Storage from "@/utils/Storage";
 export default {
+  props: ['profile'],
   name: "Notification",
-  mounted() {
-    let vueInstance = this;
-    Storage.get("my-movie-profile").then((res) => {
-      vueInstance.profile = res.id;
-    });
-  },
   data() {
-    return {
-      profile: null};
+    return {list:[]};
   },
   
   methods: {

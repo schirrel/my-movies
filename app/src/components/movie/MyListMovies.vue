@@ -5,6 +5,7 @@
 <script>
 import { $movie } from "@/services/Resources";
 import MoviesList from "@/components/movie/MoviesList";
+import Storage from "@/utils/Storage";
 export default {
   name: "MyListMovies",
     components: {
@@ -17,7 +18,10 @@ export default {
     };
   },
   mounted(){
+    Storage.get("my-movie-profile").then((res) => {
+      this.profile = res;
       this.getList();
+    });
   },
   watch: {
   },
@@ -26,9 +30,7 @@ export default {
        this.list = [];
       /*let data = await movies.popular();
       this.list = data.results;*/
-       let result = await $movie.list({
-        profile: this.profile,
-      });      
+       let result = await $movie.list(this.profile.id);      
       this.list = result.data;
       
       

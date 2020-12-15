@@ -28,17 +28,21 @@ class MovieService extends Service {
 			return err;
 		}
 	}
-	async myList(profile){
-		let list = await super.search({profile: profile});	
-		let movies = [];
-		list.forEach(async(item)=>{
-		let movie = await TMDBService.movie.get(item.movie);
-			movies.push(movie);
+	async populate(list) {
+		let movies = await list.map(async (item) => {
+			let movie = await TMDBService.movies.get(item.movie);
+			return movie;
 		});
-		
+		return await Promise.all(movies);
+	}
+	async myList(profile) {
+		let list = await super.search({ profile: profile });
+		let movies = await this.populate(list);
 		return movies;
-	
-	} 
+
+		return movies;
+
+	}
 }
 
 

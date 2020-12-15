@@ -1,11 +1,11 @@
 const Model = require('@schirrel/pg-connection/Model');
 class Movie extends Model{
-	constructor(args = {}){
+	constructor(args = {}, fromDatabase){
 	super("MOVIE")
 	this.addColumn('movie', 'MOVIE_ID');
 	this.addColumn('watched', 'WATCHED');
 	this.addColumn('profile', 'PROFILE_ID');
-	this.setValues(args);
+	this.setValues(args, fromDatabase);
 	}
 }
 
