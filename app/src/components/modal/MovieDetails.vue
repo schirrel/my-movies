@@ -133,7 +133,7 @@ export default {
       vueInstance.profile = res.id;
     });
   },
-  methods: { {
+  methods: {
     createReminder: function (event, movie) {
       event.preventDefault();
       this.toReminde = movie.id;
