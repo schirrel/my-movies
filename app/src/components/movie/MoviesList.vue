@@ -86,7 +86,7 @@ export default {
       event.preventDefault();
       this.selected = movie.id;
     },
-    setWatched(event, movie){
+    setWatched: async function  (event, movie){
      event.preventDefault();
      await $movie.watched(movie.id);
      this.$toast.success("Pronto,. agora sabemos que você assistiu!");
