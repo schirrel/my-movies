@@ -36,8 +36,16 @@ jobs:
     - run: npm run build --if-present
     - run: cd dist
     - run: ls
+    - uses: onekiloparsec/heroku-node-deploy-subfolder@v1.0.4
+      with:
+        api_key: ${{secrets.HEROKU_API_KEY}}
+        email: ${{secrets.HEROKU_EMAIL}}
+        app_name: "schirrel-my-movies"
+        branch: "master"
+        subfolder: "dist"
     - name: Create package
       uses: actions/upload-artifact@v2
       with:
         name: package
         path: "dist/*"
+    
