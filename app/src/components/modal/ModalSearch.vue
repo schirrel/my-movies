@@ -51,7 +51,8 @@
                     <button type="button" class="btn btn-sm btn-default" title="Adicionar a Lista" @click="addToWatchList($event, movie)">
                       <i class="tim-icons icon-heart-2"></i>
                     </button>
-                    <button type="button" class="btn btn-sm btn-danger" title="Adicionar Lembrete">
+                    <button type="button" class="btn btn-sm btn-danger" title="Adicionar Lembrete" 
+            @click="createReminder($event, movie)">
                       <i class="tim-icons icon-time-alarm"></i>
                     </button>
                   </div>
@@ -62,23 +63,35 @@
         </div>
       </div>
     </transition>
+    <movie-reminder :movie="toReminde" :profile="profile"></movie-reminder>
   </div>
 </template>
 <script>
 import { movies } from "@/services/TMDBService";
 import { $movie } from "@/services/Resources";
+import Reminder from "@/components/modal/Reminder";
+import Storage from "@/utils/Storage";
 
 export default {
   props: ["show", "onClose", 'profile'],
   name: "ModalSearch",
+   components: {
+    "movie-reminder": Reminder,
+  },
   data() {
     return {
       showModal: false,
       searchedText: "",
       list: [],
-    };
+      profile: null,
+      toReminde: null
+  }
   },
-  mounted() {},
+  mounted() {
+    let vueInstance = this;
+    Storage.get("my-movie-profile").then((res) => {
+      vueInstance.profile = res.id;
+    });},
   methods: {
     close() {
       this.showModal = false;
@@ -90,7 +103,10 @@ export default {
       let result = await movies.search(text);
       this.list = result.results;
     },
-    
+    createReminder: function (event, movie) {
+      event.preventDefault();
+      this.toReminde = movie.id;
+    },
     addToWatchList(event, movie) {
       event.preventDefault();
       let listed = {
