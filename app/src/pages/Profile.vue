@@ -107,7 +107,7 @@ export default {
       }
     },
     addNewProfile: function () {
-      if (this.profiles.length < 6 && !this.hasEditing) {
+      if (this.profiles.length < 5 && !this.hasEditing) {
         this.profiles.push({
           name: `Perfil ${this.profiles.length}`,
           editing: true,
