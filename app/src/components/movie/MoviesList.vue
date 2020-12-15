@@ -12,6 +12,14 @@
             >
               <i class="tim-icons icon-heart-2"></i>
             </button>
+             <button
+              type="button"
+              class="btn btn-link
+              title="Sinalizar como assistido"
+            @click="setWatched($event, movie)"
+            >
+              <i class="tim-icons icon-check-2"></i>
+            </button>
             <button
               type="button"
               class="btn btn-link hover-yellow"
@@ -77,6 +85,11 @@ export default {
     openMovieDetails: function (event, movie) {
       event.preventDefault();
       this.selected = movie.id;
+    },
+    setWatched(event, movie){
+     event.preventDefault();
+     await $movie.watched(movie.id);
+     this.$toast.success("Pronto,. agora sabemos que você assistiu!");
     },
     addToWatchList(event, movie) {
       event.preventDefault();
