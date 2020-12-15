@@ -50,6 +50,20 @@ router.put('/:id', async (req, res) => {
 	return;
 });
 
-// CREATED SET WATCHED AND WATCH REMINDER
+router.put('/watched/:id', async (req, res) => {
+	let id = req.params.id;
+	try {
+		let entity = await this.service.watched(id);
+
+		if (entity.erro) {
+			res.status(500).send(entity);
+		} else
+			res.send(entity);
+	}
+	catch (err) {
+		res.status(500).send(err);
+	}
+	return;
+});
 
 module.exports = router;
