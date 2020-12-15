@@ -8,6 +8,9 @@ var _profile = ApiRequest.createRequest('/profile');
 _profile.main = (model) => {
   return _profile.put(`/main/${model.id}`, model);
 }
+_profile.watched = (id) => {
+  return _profile.put(`/watched/${id}`);
+}
 var _notification = ApiRequest.createRequest('/notification');
 var _reminder = ApiRequest.createRequest('/reminder');
 export const $user = _user;
