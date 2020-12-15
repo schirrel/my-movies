@@ -40,7 +40,7 @@ class MovieService extends Service {
 			}
 		}
 	
-	},
+	}
 	async populate(list) {
 		let movies = await list.map(async (item) => {
 			let movie = await TMDBService.movies.get(item.movie);
