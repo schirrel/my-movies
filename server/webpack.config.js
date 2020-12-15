@@ -11,7 +11,7 @@ module.exports = {
 		__dirname: false,
 	  },
 	mode: 'production',
-	entry: './src/index.js',
+	entry: ["@babel/polyfill",'./src/index.js'],
 	plugins: [
 		new webpack.IgnorePlugin(/^pg-native$/)
 	],
