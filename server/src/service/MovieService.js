@@ -28,6 +28,19 @@ class MovieService extends Service {
 			return err;
 		}
 	}
+	async watched(id) {
+		let movie = await this.get(id);
+		
+		if(movie) {
+		movie.watched = true;
+		
+		let updated = await super.update(movie)
+		if(updated.watche){
+			return updated;
+			}
+		}
+	
+	},
 	async populate(list) {
 		let movies = await list.map(async (item) => {
 			let movie = await TMDBService.movies.get(item.movie);
