@@ -29,6 +29,7 @@
                 type="button"
                 class="btn btn-link hover-yellow"
                 title="Criar Lembrete"
+            @click="createReminder($event, model)"
               >
                 <i class="tim-icons icon-time-alarm"></i>
               </button>
@@ -106,11 +107,13 @@
         </div>
       </div>
     </transition>
+    <movie-reminder :movie="toReminde" :profile="profile"></movie-reminder>
   </div>
 </template>
 <script>
 import { movies } from "@/services/TMDBService";
 import { $movie } from "@/services/Resources";
+import Reminder from "@/components/modal/Reminder";
 import Storage from "@/utils/Storage";
 
 export default {
@@ -120,7 +123,8 @@ export default {
     return {
       showModal: false,
       model: null,
-      profile: null
+      profile: null,
+      toReminde: null
     };
   },
   mounted() {
@@ -129,7 +133,11 @@ export default {
       vueInstance.profile = res.id;
     });
   },
-  methods: {
+  methods: { {
+    createReminder: function (event, movie) {
+      event.preventDefault();
+      this.toReminde = movie.id;
+    },
     close() {
       this.showModal = false;
     },
