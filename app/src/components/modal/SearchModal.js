@@ -1,35 +1,18 @@
 <template>
   <div v-if="showModal">
     <transition name="modal-fade">
-      <div
-        class="modal fade show"
-        :id="'modal-movie-' + movie"
-        tabindex="-1"
-        role="dialog"
-      >
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-actions">
-            <div class="col-4">
-              <button
-                type="button"
-                class="close"
-                @click="close"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-          </div>
+      <div   class="modal fade show"   id="modal-search-modal"   tabindex="-1"      role="dialog"     >
         <div class="modal-content">
             <div class="modal-header">
-              <input type="text" class="form-control" id="inlineFormInputGroup" v-model="searchedText" placeholder="SEARCH">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <i class="tim-icons icon-simple-remove"></i>
-              </button>
+              <form class="form" action="" @submit.prevent="SearchMovie">
+                 <input @keyup.enter.native="onSubmit"  type="text" class="form-control" id="inlineFormInputGroup" v-model="searchedText" placeholder="SEARCH"/>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <i class="tim-icons icon-simple-remove"></i>
+                 </button>
+            </form>
             </div>
           </div>
         </div>
-      </div>
     </transition>
   </div>
 </template>
@@ -49,6 +32,11 @@ export default {
   methods: {
     close() {
       this.showModal = false;
+    },
+    SearchMovie() {
+    let result = await movies.search(this.searchedText);
+      let found = result.data;
+      
     }
   },
   watch: {
