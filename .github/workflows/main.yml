@@ -40,6 +40,6 @@ jobs:
         api_key: ${{secrets.HEROKU_API_KEY}}
         email: ${{secrets.HEROKU_EMAIL}}
         app_name: "my-movies-schirrel"
-        branch: "main"
+        branch: "master"
         subfolder: "dist"
     
