@@ -39,7 +39,7 @@ jobs:
       with:
         api_key: ${{secrets.HEROKU_API_KEY}}
         email: ${{secrets.HEROKU_EMAIL}}
-        app_name: "https://git.heroku.com/schirrel-my-movies.git"
+        app_name: "schirrel-my-movies"
         branch: "main"
         subfolder: "dist"
     
