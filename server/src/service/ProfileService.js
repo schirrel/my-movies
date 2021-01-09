@@ -28,6 +28,10 @@ class ProfileService extends Service {
 		if (decoded.data) {
 			model.user = decoded.data;
 		}
+		
+		return await this.defaultCreate(model);
+	}
+	async defaultCreate (model) {
 		this.validateCreate(model);
 		return await super.create(model);
 	}

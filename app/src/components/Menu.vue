@@ -45,6 +45,16 @@ color: white !important;
     margin-left: 20px;
 }
 
+@media screen and (max-width: 991px){
+  
+.navbar-dark .navbar-nav .nav-link {
+    
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 5px;
+  }
+}
+
 
 .navbar-dark .navbar-nav .nav-link:hover {
     color: black;

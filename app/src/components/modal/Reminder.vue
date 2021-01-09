@@ -181,4 +181,26 @@ h4 {
   padding: 0;
   margin: 0;
 }
+
+.b-form-datepicker label {
+  
+    padding: 10px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.b-form-datepicker button,
+.b-calendar .btn {
+    background: transparent;
+    color: black !important;
+}
+.b-form-datepicker button:hover,
+.b-calendar .btn:hover,
+.b-form-datepicker button:active,
+.b-calendar .btn:active,
+.b-form-datepicker button:focus,
+.b-calendar .btn:focus {
+    background: transparent !important;
+    color: var(--primary) !important;
+}.modal-content .modal-body {
+    z-index: 999;}
 </style>

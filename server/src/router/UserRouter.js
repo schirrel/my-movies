@@ -14,6 +14,7 @@ router.post('/', async (req, res) => {
 		} else
 			res.send(entity);
 	} catch (err) {
+		console.log(err);
 		res.status(500).send(err.message);
 	}
 	return;

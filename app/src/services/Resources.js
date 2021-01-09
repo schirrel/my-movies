@@ -4,6 +4,9 @@ var _movie = ApiRequest.createRequest('/movie');
 _movie.list = (profileId) => {
   return _movie.get(`/${profileId}/list`);
 }
+_movie.watched = (id) => {
+  return _movie.put(`/watched/${id}`);
+}
 var _profile = ApiRequest.createRequest('/profile');
 _profile.main = (model) => {
   return _profile.put(`/main/${model.id}`, model);

@@ -83,7 +83,7 @@
               class="nav-link btn btn-default"
               @click="openSearch"
             >
-              <i class="tim-icons icon-zoom-split"></i>
+              <i class="tim-icons icon-zoom-split"></i> <span class="d-none d-lg-block d-xl-block"> Procurar </span>
             </button>
           </li>
           <li class="nav-item">

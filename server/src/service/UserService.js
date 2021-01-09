@@ -5,7 +5,8 @@ const User = require('../models/User');
 
 class UserService extends Service {
 	constructor() {
-		super(UserRepository, User)
+		super(UserRepository, User);
+		this.profileService = new ProfileService();
 	}
 
 	validateUniqueEmail() {
@@ -25,8 +26,8 @@ class UserService extends Service {
 	async create(model) {
 		this.validateCreate(model);
 		let result =  await super.create(model);
-		let entity = result.rows[0];
-		let perfiPrincipal = await this.profileService.create({name:'Meu Perfil', main: true, user: entity.id});
+		let entity = result;
+		let perfiPrincipal = await this.profileService.defaultCreate({name:'Meu Perfil', main: true, user: entity.id});
 		
 		return entity;
 	}
