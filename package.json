@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/schirrel/my-movies/issues"
   },
-  "homepage": "https://github.com/schirrel/my-movies#readme"
+  "homepage": "https://github.com/schirrel/my-movies#readme",
+  "dependencies": {
+    "@schirrel/pg-connection": "0.0.24"
+  }
 }
