@@ -5,12 +5,14 @@ const movieService = new MovieService();
 
 const getMoviesFromSameGenres = async (genres) => {
     let suggestions = [];
-    genres.forEach(async (genre) => {
+   /* genres.forEach(async (genre) => {
         let suggest = await TMDBService.movies.byGenre(genre, 3);
         suggestions.push(suggest);
     });
     
-    let result = await Promise.allSettled(suggestions);
+    let result = await Promise.allSettled(suggestions);*/
+    
+    let suggest = await TMDBService.movies.byGenre(genres);
     return result;
 }
 
