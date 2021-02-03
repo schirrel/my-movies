@@ -29,6 +29,10 @@ const movies = {
     },get : async(movieId) => {
         let result = await api.get(`movie/${movieId}`);
             return result.data;      
+    },
+    byGenre: async(genres) => {
+        let result = await api.get('movie/discover',{with_genres:genres});
+        return result.data;      
     }
 }
 
