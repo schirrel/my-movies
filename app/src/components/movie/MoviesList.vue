@@ -95,6 +95,7 @@ export default {
       event.preventDefault();
       let listed = {
         movie: movie.id,
+        genres: movie.genre_ids,
         profile: this.profile,
       };
 
