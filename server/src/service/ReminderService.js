@@ -17,7 +17,7 @@ class ReminderService extends Service {
 		let current =  decoded.data;
 		
 		
-		let result =  await super.search({profile: current);
+		let result =  await super.search({profile: current});
 		return result;
 
 
