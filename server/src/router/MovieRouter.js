@@ -1,6 +1,7 @@
 let router = require("express").Router();
 let middleware = require("./middleware/AuthMiddleware");
 const MovieService = require('../service/MovieService');
+const suggestion = require('../service/SuggestionService');
 
 this.service = new MovieService();
 
@@ -63,6 +64,14 @@ router.put('/watched/:id', async (req, res) => {
 	catch (err) {
 		res.status(500).send(err);
 	}
+	return;
+});
+
+router.get('/:id/suggest', async (req, res) => {
+	
+	let id = req.params.id;
+	let list = await suggestion(id);
+	res.send(list);
 	return;
 });
 

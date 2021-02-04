@@ -159,6 +159,7 @@ export default {
     addToWatchList() {
       let listed = {
         movie: this.model.id,
+        genres: this.model.genre_ids,
         profile: this.profile,
       };
 
