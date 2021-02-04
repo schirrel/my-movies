@@ -15,6 +15,10 @@ class ReminderService extends Service {
 
 		let decoded = TokenService.decode(TokenService.getToken(req));
 		let current =  decoded.data;
+		
+		
+		let result =  await super.search({profile: current);
+		return result;
 
 
 	}
