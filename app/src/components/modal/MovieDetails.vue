@@ -114,7 +114,7 @@
 import { movies } from "@/services/TMDBService";
 import { $movie } from "@/services/Resources";
 import Reminder from "@/components/modal/Reminder";
-import Storage from "@/utils/Storage";
+import Storage from "@/services/Storage";
 
 export default {
   name: "MovieDetails",

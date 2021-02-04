@@ -12,7 +12,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/styles.css';
 import './assets/creative-tim/blk-design-system/assets/css/blk-design-system.css';
 import './assets/creative-tim/blk-design-system/assets/css/nucleo-icons.css';
-
+import '@fortawesome/fontawesome-free/css/all.css';
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm';
 import jquery from 'jquery';
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle';

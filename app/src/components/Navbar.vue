@@ -77,13 +77,14 @@
             </ul>
           </li> -->
           <notification :profile="profile"></notification>
-          <li class="nav-item" >
+          <li class="nav-item">
             <button
               type="button"
               class="nav-link btn btn-default"
               @click="openSearch"
             >
-              <i class="tim-icons icon-zoom-split"></i> <span class="d-none d-lg-block d-xl-block"> Procurar </span>
+              <i class="tim-icons icon-zoom-split"></i>
+              <span class="d-none d-lg-block d-xl-block"> Procurar </span>
             </button>
           </li>
           <li class="nav-item">
@@ -99,12 +100,16 @@
         </ul>
       </div>
     </div>
-    <modal-search :show="showSearchModal" :onClose="closeSearch" :profile="profile"></modal-search>
+    <modal-search
+      :show="showSearchModal"
+      :onClose="closeSearch"
+      :profile="profile"
+    ></modal-search>
   </nav>
 </template>
 
 <script>
-import Storage from "@/utils/Storage";
+import Storage from "@/services/Storage";
 import Notification from "@/components/Notification";
 import ModalSearch from "@/components/modal/ModalSearch";
 export default {
@@ -117,7 +122,7 @@ export default {
     return {
       profile: null,
       showSearchModal: false,
-      profilePage: true
+      profilePage: true,
     };
   },
   methods: {
@@ -143,3 +148,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.navbar-expand-sm .navbar-nav .nav-link {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+</style>

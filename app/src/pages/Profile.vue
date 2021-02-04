@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import Storage from "@/utils/Storage";
+import Storage from "@/services/Storage";
 import { $profile } from "@/services/Resources";
 export default {
   name: "Profile",

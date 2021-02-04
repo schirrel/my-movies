@@ -5,7 +5,7 @@
 <script>
 import { $movie } from "@/services/Resources";
 import MoviesList from "@/components/movie/MoviesList";
-import Storage from "@/utils/Storage";
+import Storage from "@/services/Storage";
 export default {
   name: "MyListMovies",
     components: {

@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "npm run prepare-project",
     "prepare-project": "cd server && npm install && cd ../app && npm install",
-    "start": "npm-run-all --parallel  cd server && npm run start",
+    "start": "npm-run-all --parallel run-app run-server",
     "test": "echo \"No tests yet\" ",
     "run-app": "cd app && npm run serve",
     "run-server": "cd server && npm run start",
@@ -17,7 +17,9 @@
     "type": "git",
     "url": "git+https://github.com/schirrel/my-movies.git"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"

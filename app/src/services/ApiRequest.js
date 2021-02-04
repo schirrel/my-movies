@@ -1,5 +1,5 @@
 import axios from "axios";
-import Storage from "@/utils/Storage";
+import Storage from "@/services/Storage";
 import RequestObservable from '@/services/RequestObservable';
 
 import AuthorizationInterceptor from '@/services/interceptors/AuthorizationInterceptor';
@@ -8,7 +8,7 @@ import SessionInterceptor from '@/services/interceptors/SessionInterceptor';
 
 
 const api = axios.create({
-    baseURL: "https://my-movies-schirrel.herokuapp.com/api",
+    baseURL: `${process.env.API_URL}/api`//"https://my-movies-schirrel.herokuapp.com/api",
   // baseURL: "http://localhost:8080/api"
 });
 

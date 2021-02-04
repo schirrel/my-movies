@@ -8,7 +8,7 @@ dotenv.config();
 const logger = require('./utils/logger');
 
 const bodyParser = require('body-parser');
-
+const PORT = process.env.PORT || 3000;
 
 app.use(
     cors()
@@ -28,8 +28,8 @@ app.use(bodyParser.json());
 
 
 app.use('/api',routers);
-app.listen(process.env.PORT,()=>{
-    logger.info(`App started at ${process.env.PORT}`);
+app.listen(PORT,()=>{
+    logger.info(`App started at ${PORT}`);
 })
 
 

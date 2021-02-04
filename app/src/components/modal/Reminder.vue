@@ -64,7 +64,7 @@
 <script>
 import { movies } from "@/services/TMDBService";
 import { $movie, $reminder } from "@/services/Resources";
-import Storage from "@/utils/Storage";
+import Storage from "@/services/Storage";
 export default {
   name: "MovieDetails",
   props: ["movie"],

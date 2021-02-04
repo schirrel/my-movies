@@ -130,15 +130,20 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.card-title {
-  color: white !important;
-  padding-left: 10px;
-  text-transform: capitalize !important;
-}
+
 .navbar > .container {
   margin-top: 5px;
   max-width: 100%;
   margin-bottom: 5px;
   margin-right: 0;
+}
+.card-title {
+  color: white !important;
+  padding-left: 10px;
+  text-transform: capitalize !important;
+  font-size: 3rem !important;
+}
+.card .card-header {
+  padding: 15px 15px 0;
 }
 </style>

@@ -1,3 +1,5 @@
+let STORAGE_USER = "my-movies-user";
+
 export default class Storage {
 
     static parse(val, isSet) {
@@ -43,4 +45,26 @@ export default class Storage {
             }
         }); 
     }
-}
+
+	
+	
+	static credentials (){
+		
+		return {
+			has: () =>{
+				return this.has(STORAGE_USER);
+			},
+			get:()=> {
+				return this.get(STORAGE_USER);
+			},
+			set:(val)=>{
+				return this.set(STORAGE_USER, val);
+			},
+			clear:()=>{
+				this.clear(STORAGE_USER);
+			}
+			
+		}
+		
+	}
+	}

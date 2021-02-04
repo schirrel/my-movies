@@ -1,12 +1,15 @@
 <template>
   <div class="wrapper">
     <div class="page-header">
-      <nav class="navbar navbar-expand-lg fixed-top navbar-transparent">
+      <nav
+        class="navbar navbar-expand-sm fixed-top navbar-transparent"
+        color-on-scroll="100"
+      >
         <div class="container">
-          <div class="navbar-translate">
+          <div class="">
             <a
               class="navbar-brand"
-              href="https://demos.creative-tim.com/blk-design-system/index.html"
+              href="#"
               rel="tooltip"
               title=""
               data-placement="bottom"
@@ -25,6 +28,11 @@
               </div>
             </div>
             <ul class="navbar-nav">
+              <!-- <li class="nav-item">
+                <router-link class="nav-link" to="/login ">
+                  <small> Recuperar Senha </small>
+                </router-link>
+              </li> -->
               <li class="nav-item">
                 <router-link class="nav-link btn btn-primary" to="/login">
                   Acessar
@@ -88,8 +96,24 @@
                     />
                   </div>
                 </div>
-                <div class="card-footer">
-                  <button class="btn btn-info btn-round btn-lg">Salvar</button>
+                <div class="card-footer register-footer">
+                 <!--  <facebook-login
+                    class="button"
+                    appId="326022817735322"
+                    @login="getUserData"
+                    @logout="onLogout"
+                    @get-initial-status="getUserData"
+                  >
+                  </facebook-login>
+                  <button
+                    class="btn btn-info btn-icon btn-round"
+                    type="button"
+                    @click="registerWithFacebook"
+                    title="Utilizar Facebook"
+                  >
+                    <i class="fab fa-facebook-square fa-2x"></i>
+                  </button> -->
+                  <button class="btn btn-info btn-round">Salvar</button>
                 </div>
               </form>
             </div>
@@ -101,30 +125,49 @@
 </template>
 
 <script>
-import { $user } from "../services/Resources";
+// import facebookLogin from "facebook-login-vuejs";
+
+import { $user } from "@/services/Resources";
 export default {
   name: "Register",
-
+  components: {
+    // facebookLogin,
+  },
   data() {
     return {
       user: {},
     };
   },
   methods: {
-    onSubmit: function () {
+    onSubmit() {
       $user.post("/", this.user).then(() => {
         this.$toast.success("Usuário cadastrado com sucesso");
       });
     },
+    registerWIthFacebook() {},
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.navbar > .container {
+  margin-top: 5px;
+  max-width: 100%;
+  margin-bottom: 5px;
+  margin-right: 0;
+}
 .card-title {
   color: white !important;
   padding-left: 10px;
   text-transform: capitalize !important;
+  font-size: 3rem !important;
+}
+.card .card-header {
+  padding: 15px 15px 0;
+}
+.register-footer {
+  display: flex;
+  justify-content: space-between;
 }
 </style>

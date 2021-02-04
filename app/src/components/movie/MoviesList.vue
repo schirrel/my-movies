@@ -53,7 +53,7 @@
 import MovieDetails from "@/components/modal/MovieDetails";
 import Reminder from "@/components/modal/Reminder";
 import { $movie } from "@/services/Resources";
-import Storage from "@/utils/Storage";
+import Storage from "@/services/Storage";
 export default {
   name: "MovieList",
   components: {

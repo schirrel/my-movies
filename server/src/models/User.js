@@ -7,6 +7,7 @@ class User extends Model{
 	this.addColumn('name', 'NAME');
 	this.addColumn('password', 'PASSWORD');
 	this.addColumn('birthday', 'BIRTHDAY');
+	this.addColumn('facebookId', 'FACEBOOK_ID');
 	this.setValues(args);
 	}
 }
