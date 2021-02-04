@@ -33,7 +33,9 @@ export default {
   data() {
     return {list:[]};
   },
-  
+  mounted() {
+  this.getList();
+  },
   methods: {
   getList: async function () {
        this.list = [];

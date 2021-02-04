@@ -89,9 +89,12 @@ export default {
   },
   mounted() {
     let vueInstance = this;
+    setTimeout(()=>{    
     Storage.get("my-movie-profile").then((res) => {
-      vueInstance.profile = res.id;
+       if(res)
+         vueInstance.profile = res.id;
     });},
+    }, 500)
   methods: {
     close() {
       this.showModal = false;
