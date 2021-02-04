@@ -36,3 +36,5 @@ const getSuggestion = async (profile) => {
     let movies = await getMoviesFromSameGenres(flattenGenres);
     return movies;
 }
+
+module.exports = getSuggestion;
