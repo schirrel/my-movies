@@ -113,7 +113,11 @@ export default {
   methods: {
     onSubmit: function () {
       $user.post("/", this.user).then(() => {
+        this.user = {};
         this.$toast.success("Usuário cadastrado com sucesso");
+        setTimeout(()=>{
+        this.$outer.push({name:'login'});
+        }, 800)
       });
     },
   },
