@@ -109,7 +109,7 @@
 </template>
 
 <script>
-import Storage from "@/services/Storage";
+import StorageService from "@/services/StorageService";
 import Notification from "@/components/Notification";
 import ModalSearch from "@/components/modal/ModalSearch";
 export default {
@@ -134,13 +134,13 @@ export default {
     },
   },
   mounted() {
-    Storage.get("my-movie-profile").then((res) => {
+    StorageService.get("my-movie-profile").then((res) => {
       this.profile = res;
     });
   },
   watch: {
     $route() {
-      Storage.get("my-movie-profile").then((res) => {
+      StorageService.get("my-movie-profile").then((res) => {
         this.profile = res;
       });
       this.profilePage = this.$router.currentRoute.name == "secure.profile";

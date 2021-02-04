@@ -114,7 +114,7 @@
 import { movies } from "@/services/TMDBService";
 import { $movie } from "@/services/Resources";
 import Reminder from "@/components/modal/Reminder";
-import Storage from "@/services/Storage";
+import StorageService from "@/services/StorageService";
 
 export default {
   name: "MovieDetails",
@@ -132,7 +132,7 @@ export default {
   },
   mounted() {
     let vueInstance = this;
-    Storage.get("my-movie-profile").then((res) => {
+    StorageService.get("my-movie-profile").then((res) => {
       vueInstance.profile = res.id;
     });
   },

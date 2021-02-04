@@ -1,4 +1,4 @@
-import Storage from "./Storage";
+import StorageService from "./StorageService.js";
 import ApiRequest from "./ApiRequest";
 
 export default class Auth {
@@ -7,13 +7,13 @@ export default class Auth {
    * @returns {Function} Promise
    */
   static register(value) {
-    return Storage.set("my-movie-jwt", value);
+    return StorageService.credentials().set(value);
   }
   /**
    * @returns {Promise} Promise
    */
   static unregister() {
-    return Storage.clear("my-movie-jwt");
+    return StorageService.credentials().clear();
   }
   /**
    * @param {Object} credentials
@@ -23,7 +23,7 @@ export default class Auth {
     return ApiRequest.api
       .post("/login", credentials)
       .then((response) => {
-        this.register(response.data).then(success);
+        Auth.register(response.data).then(success);
       })
       .catch(error);
   }
@@ -54,7 +54,7 @@ export default class Auth {
     }
     const isSecure = to.matched.some((route) => route.meta.secure);
     if (!isSecure) return next();
-    if (Storage.credentials().has()) {
+    if (StorageService.credentials().has()) {
       next();
     } else {
       if (from.name != "login") {

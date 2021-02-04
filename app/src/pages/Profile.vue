@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import Storage from "@/services/Storage";
+import StorageService from "@/services/StorageService";
 import { $profile } from "@/services/Resources";
 export default {
   name: "Profile",
@@ -102,7 +102,7 @@ export default {
         return;
       }
       if (profile.id) {
-        Storage.set("my-movie-profile", profile);
+        StorageService.set("my-movie-profile", profile);
         this.$router.push({ name: "secure.home" });
       }
     },

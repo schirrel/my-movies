@@ -23,7 +23,8 @@ router.post('/', async (req, res) => {
 });
 
 router.get('/search', async (req, res) => {
-	let list = await this.service.search(req.query);
+	//TODO GET PROFILE AND DATE TODAY
+	let list = await this.service.search(req);
 	res.send(list);
 	return;
 });

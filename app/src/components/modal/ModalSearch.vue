@@ -39,20 +39,33 @@
                   v-for="(movie, index) in list"
                   :key="index"
                   class="searched-list"
-                  :style="(movie.poster_path ?  'background-image: url(https://image.tmdb.org/t/p/w200/' +
-                    movie.poster_path +
-                    ')' : '')"
+                  :style="
+                    movie.poster_path
+                      ? 'background-image: url(https://image.tmdb.org/t/p/w200/' +
+                        movie.poster_path +
+                        ')'
+                      : ''
+                  "
                 >
                   <span class="movie-title">
                     {{ movie.title }}
                   </span>
 
                   <div class="movie-actions">
-                    <button type="button" class="btn btn-sm btn-default" title="Adicionar a Lista" @click="addToWatchList($event, movie)">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-default"
+                      title="Adicionar a Lista"
+                      @click="addToWatchList($event, movie)"
+                    >
                       <i class="tim-icons icon-heart-2"></i>
                     </button>
-                    <button type="button" class="btn btn-sm btn-danger" title="Adicionar Lembrete" 
-            @click="createReminder($event, movie)">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-danger"
+                      title="Adicionar Lembrete"
+                      @click="createReminder($event, movie)"
+                    >
                       <i class="tim-icons icon-time-alarm"></i>
                     </button>
                   </div>
@@ -70,12 +83,12 @@
 import { movies } from "@/services/TMDBService";
 import { $movie } from "@/services/Resources";
 import Reminder from "@/components/modal/Reminder";
-import Storage from "@/services/Storage";
+import StorageService from "@/services/StorageService";
 
 export default {
   props: ["show", "onClose"],
   name: "ModalSearch",
-   components: {
+  components: {
     "movie-reminder": Reminder,
   },
   data() {
@@ -84,17 +97,17 @@ export default {
       searchedText: "",
       list: [],
       profile: null,
-      toReminde: null
-  }
+      toReminde: null,
+    };
   },
   mounted() {
     let vueInstance = this;
-    setTimeout(()=>{    
-    Storage.get("my-movie-profile").then((res) => {
-       if(res)
-         vueInstance.profile = res.id;
-    });},
-    }, 500)
+    setTimeout(() => {
+      StorageService.get("my-movie-profile").then((res) => {
+        if (res) vueInstance.profile = res.id;
+      });
+    }, 500);
+  },
   methods: {
     close() {
       this.showModal = false;
@@ -126,7 +139,7 @@ export default {
         .catch((err) => {
           this.$toast.error(err.response.data || err.message);
         });
-    }
+    },
   },
   watch: {
     show: function (value) {
@@ -159,7 +172,6 @@ span.movie-title {
   font-size: 18px !important;
 }
 .movie-actions {
-  
   margin-left: 75px;
   display: block;
 }

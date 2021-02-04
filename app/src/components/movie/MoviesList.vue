@@ -53,7 +53,7 @@
 import MovieDetails from "@/components/modal/MovieDetails";
 import Reminder from "@/components/modal/Reminder";
 import { $movie } from "@/services/Resources";
-import Storage from "@/services/Storage";
+import StorageService from "@/services/StorageService";
 export default {
   name: "MovieList",
   components: {
@@ -70,7 +70,7 @@ export default {
   },
   mounted() {
     let vueInstance = this;
-    Storage.get("my-movie-profile").then((res) => {
+    StorageService.get("my-movie-profile").then((res) => {
       vueInstance.profile = res.id;
     });
   },

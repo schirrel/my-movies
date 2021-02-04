@@ -11,6 +11,14 @@ class ReminderService extends Service {
 		let result =  await super.create(model);
 		return result;
 	}
+	async search(req) {
+
+		let decoded = TokenService.decode(TokenService.getToken(req));
+		let current =  decoded.data;
+
+
+	}
+
 }
 
 

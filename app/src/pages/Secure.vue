@@ -3,7 +3,7 @@
     <loading> </loading>
     <div class="wrapper">
       <div class="page-header">
-        <navbar></navbar>
+        <navbar v-if="showNavbar"></navbar>
       </div>
 
       <div class="content">
@@ -22,11 +22,15 @@ export default {
   name: "App",
   components: {
     navbar: Navbar,
-    loading: Loading
+    loading: Loading,
   },
   data() {
-    return {
-    };
+    return {};
+  },
+  computed: {
+    showNavbar() {
+      return this.$route.name !== "secure.profile";
+    },
   },
   mounted() {},
 };

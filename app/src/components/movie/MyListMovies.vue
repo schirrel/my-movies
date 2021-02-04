@@ -5,7 +5,7 @@
 <script>
 import { $movie } from "@/services/Resources";
 import MoviesList from "@/components/movie/MoviesList";
-import Storage from "@/services/Storage";
+import StorageService from "@/services/StorageService";
 export default {
   name: "MyListMovies",
     components: {
@@ -18,7 +18,7 @@ export default {
     };
   },
   mounted(){
-    Storage.get("my-movie-profile").then((res) => {
+    StorageService.get("my-movie-profile").then((res) => {
       this.profile = res;
       this.getList();
     });

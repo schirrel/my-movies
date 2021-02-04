@@ -64,7 +64,7 @@
 <script>
 import { movies } from "@/services/TMDBService";
 import { $movie, $reminder } from "@/services/Resources";
-import Storage from "@/services/Storage";
+import StorageService from "@/services/StorageService";
 export default {
   name: "MovieDetails",
   props: ["movie"],
@@ -78,7 +78,7 @@ export default {
   },
   mounted() {
     let vueInstance = this;
-    Storage.get("my-movie-profile").then((res) => {
+    StorageService.get("my-movie-profile").then((res) => {
       vueInstance.profile = res.id;
     });
   },
