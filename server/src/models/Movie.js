@@ -5,7 +5,7 @@ class Movie extends Model{
 	this.addColumn('movie', 'MOVIE_ID');
 	this.addColumn('watched', 'WATCHED');
 	this.addColumn('profile', 'PROFILE_ID');
-	this.addColumn('genres', 'GENRE_IDS'); 
+	this.addColumn('genres', 'GENRES'); 
 	this.setValues(args, fromDatabase);
 	}
 }

@@ -140,11 +140,12 @@ export default {
   },
   methods: {
     onSubmit() {
+      let vueInstance = this;
       $user.post("/", this.user).then(() => {
         this.user = {};
         this.$toast.success("Usuário cadastrado com sucesso");
         setTimeout(()=>{
-        this.$outer.push({name:'login'});
+        vueInstance.$router.push({name:'login'});
         }, 800)
       });
     },

@@ -102,6 +102,7 @@ export default {
       let toSave = {
         reminderAt: this.reminder,
         movie: this.model.id,
+        title: this.model.title,
         profile: this.profile,
         createdAt: new Date(),
       };

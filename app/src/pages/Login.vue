@@ -112,7 +112,9 @@ export default {
       Auth.login(
         this.auth,
         () => {
-          vueInstance.$router.push({ name: "secure.profile" });
+          setTimeout(() => {
+            vueInstance.$router.push({ name: "secure.profile" });
+          }, 500);
         },
         (err) => {
           if (err.response.status == 401) {
@@ -130,7 +132,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .navbar > .container {
   margin-top: 5px;
   max-width: 100%;

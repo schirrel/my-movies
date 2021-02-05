@@ -8,9 +8,9 @@
       data-toggle="dropdown"
       aria-expanded="false"
     >
-      <div class="notification d-none d-lg-block d-xl-block" v-if="!list.length"></div>
+      <div class="notification d-none d-lg-block d-xl-block" v-if="list.length"></div>
       <i class="tim-icons icon-bell-55"></i>
-      <p class="d-lg-none">Notifications</p>
+      <p class="d-lg-none">Notificações</p>
     </a>
     <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
       <template v-for="(reminder, index) in list">
@@ -19,7 +19,7 @@
         </li>
       </template>
 
-      <li v-if="!list.length" class="nav-link">No message</li>
+      <li v-if="!list.length" class="nav-link">Você não tem notificações </li>
     </ul>
   </li>
 </template>

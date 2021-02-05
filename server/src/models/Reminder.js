@@ -3,6 +3,7 @@ class Reminder extends Model{
 	constructor(args = {}){
 	super("REMINDER")
 	this.addColumn('movie', 'MOVIE_ID');
+	this.addColumn('title', 'MOVIE_TITLE');
 	this.addColumn('reminderAt', 'REMINDER_AT');
 	this.addColumn('profile', 'PROFILE_ID');
 	this.addColumn('createdAt', 'CREATED_AT');  

@@ -1,13 +1,13 @@
-export default function AuthorizationInterceptor(api, token){
-    api.interceptors.request.use(
-        config => {
-            if (token && config.url !== '/login' && !config.headers['Authorization']) {
-                config.headers['Authorization'] = 'Bearer ' + token;
-            }
-            return config;
-        },
-        error => {
-            Promise.reject(error)
-        }
-    );
+import StorageService from "@/services/StorageService";
+export default function AuthorizationInterceptor(api) {
+  api.interceptors.request.use(
+    async (config) => {
+      let token = await StorageService.credentials().get();
+      config.headers["Authorization"] = "Bearer " + token;
+      return config;
+    },
+    (error) => {
+      Promise.reject(error);
+    }
+  );
 }
