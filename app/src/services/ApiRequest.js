@@ -7,8 +7,8 @@ import LoadingInterceptor from "@/services/interceptors/LoadingInterceptor";
 import SessionInterceptor from "@/services/interceptors/SessionInterceptor";
 
 const api = axios.create({
-  //baseURL: "https://my-movies-schirrel.herokuapp.com/api",
-  baseURL: "http://localhost:8080/api",
+  baseURL: "https://my-movies-schirrel.herokuapp.com/api",
+ // baseURL: "http://localhost:8080/api",
 });
 
 const ApiRequest = { api: api };
