@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const logger = require('../utils/logger');
 dotenv.config();
 
 class TokenService {
 
 	static async encode(userId) {
 		try {
-			console.log(`${process.env.TOKEN_VALIDATION}`)
 			var token =
 				await jwt.sign({
 					data: userId
@@ -15,7 +15,7 @@ class TokenService {
 			return token;
 		} catch (err) {
 
-			console.log(err)
+			logger.error(err)
 		}
 
 	}
@@ -24,8 +24,8 @@ class TokenService {
 		const decoded = jwt.verify(token, process.env.SECRET);
 		return decoded;     
 	}catch(err) {
-		console.log("error at jwt")
-		console.log(token);
+		logger.error("error at jwt", err)
+		logger.error(token);
 		
 	}
 	}

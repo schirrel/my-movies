@@ -52,9 +52,8 @@ router.put('/:id', async (req, res) => {
 });
 
 router.put('/watched/:id', async (req, res) => {
-	let id = req.params.id;
 	try {
-		let entity = await this.service.watched(id);
+		let entity = await this.service.watched(req);
 
 		if (entity.erro) {
 			res.status(500).send(entity);

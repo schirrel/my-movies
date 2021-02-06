@@ -1,7 +1,6 @@
 <template>
   <div class="container">
   <section>  
-    <h3>My List</h3>
     <my-list></my-list>
   </section>
     <section>  

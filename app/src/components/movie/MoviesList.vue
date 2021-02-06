@@ -12,19 +12,24 @@
             >
               <i class="tim-icons icon-heart-2"></i>
             </button>
-             <button
+            <button
+              v-if="showWatched"
               type="button"
+              :disabled="movie.myData.watched"
               class="btn btn-link"
-              title="Sinalizar como assistido"
-            @click="setWatched($event, movie)"
+              :title="
+                movie.myData.watched ? 'Assistido' : 'Sinalizar como assistido'
+              "
+              @click="setWatched($event, movie)"
             >
-              <i class="tim-icons icon-check-2"></i>
+              <i v-if="movie.myData.watched" class="tim-icons icon-check-2"></i>
+              <i v-else class="tim-icons icon-triangle-right-17"></i>
             </button>
             <button
               type="button"
               class="btn btn-link hover-yellow"
               title="Criar Lembrete"
-            @click="createReminder($event, movie)"
+              @click="createReminder($event, movie)"
             >
               <i class="tim-icons icon-time-alarm"></i>
             </button>
@@ -60,12 +65,12 @@ export default {
     "movie-details": MovieDetails,
     "movie-reminder": Reminder,
   },
-  props: ["data"],
+  props: ["data", "showWatched"],
   data() {
     return {
       selected: null,
       profile: null,
-      toReminde: null
+      toReminde: null,
     };
   },
   mounted() {
@@ -86,10 +91,10 @@ export default {
       event.preventDefault();
       this.selected = movie.id;
     },
-    setWatched: async function  (event, movie){
-     event.preventDefault();
-     await $movie.watched(movie.id);
-     this.$toast.success("Pronto,. agora sabemos que você assistiu!");
+    setWatched: async function (event, movie) {
+      event.preventDefault();
+      await $movie.watched(movie.id);
+      this.$toast.success("Pronto, agora sabemos que você assistiu!");
     },
     addToWatchList(event, movie) {
       event.preventDefault();
@@ -103,7 +108,7 @@ export default {
         .create(listed)
         .then((res) => {
           movie.list = res;
-          this.$toast.success("Filme adicionado a sua lista");
+          this.$toast.success(`${movie.title} adicionado a sua lista`);
         })
         .catch((err) => {
           this.$toast.error(err.response.data || err.message);
@@ -139,7 +144,7 @@ li .movie-list-action {
   margin: 0;
   transition: all 300ms ease;
   display: flex;
-    justify-content: space-around;
+  justify-content: space-around;
 }
 li:hover .movie-list-action {
   opacity: 1;

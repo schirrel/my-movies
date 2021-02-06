@@ -1,5 +1,5 @@
 
-const jwt = require('jsonwebtoken');
+const logger = require('../../utils/logger');
 const TokenService = require('../../service/TokenService');
 const auth = async (req, res, next) => {
     try {
@@ -13,7 +13,7 @@ const auth = async (req, res, next) => {
         next()
     } catch (error) {
         //TODO IMPLEMENT TOKEN EXPIRED RETURN
-        console.log('Erro')
+        logger.error(error)
         res.status(401).send({ error: 'Please authenticate!' })
     }
 }

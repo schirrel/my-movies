@@ -1,6 +1,7 @@
 
 let router = require("express").Router();
 const UserService = require('../service/UserService');
+const logger = require('../utils/logger');
 
 this.service = new UserService();
 
@@ -14,7 +15,7 @@ router.post('/', async (req, res) => {
 		} else
 			res.send(entity);
 	} catch (err) {
-		console.log(err);
+		logger.error(err);
 		res.status(500).send(err.message);
 	}
 	return;

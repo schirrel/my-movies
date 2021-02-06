@@ -7,8 +7,8 @@
     "prepare-project": "cd server && npm install && cd ../app && npm install",
     "start": "npm-run-all --parallel run-app run-server",
     "test": "echo \"No tests yet\" ",
-    "run-app": "cd app && npm run serve",
-    "run-server": "cd server && npm run start",
+    "app": "cd app && npm run serve",
+    "server": "cd server && npm run start",
     "build-app": "cd app && npm run build",
     "build-server": "cd server && npm run build",
     "build": "npm run build-app && npm run build-server"

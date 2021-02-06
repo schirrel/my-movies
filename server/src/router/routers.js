@@ -1,13 +1,11 @@
-
 const router = require("express").Router();
-const logger = require('../utils/logger');
+const Logger = require("../utils/logger");
 
-router.use('/user', require("./UserRouter"));
-router.use('/profile', require("./ProfileRouter"));
-router.use('/movie', require("./MovieRouter"))
+router.use("/user", require("./UserRouter"));
+router.use("/profile", require("./ProfileRouter"));
+router.use("/movie", require("./MovieRouter"));
 router.use(require("./SessionRouter"));
-router.use('/reminder', require("./ReminderRouter"));
+router.use("/reminder", require("./ReminderRouter"));
 
-
-logger.info('Router setted');
+Logger.info("Router setted");
 module.exports = router;

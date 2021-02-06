@@ -1,5 +1,4 @@
 import axios from "axios";
-import StorageService from "@/services/StorageService";
 import RequestObservable from "@/services/RequestObservable";
 
 import AuthorizationInterceptor from "@/services/interceptors/AuthorizationInterceptor";
@@ -7,24 +6,21 @@ import LoadingInterceptor from "@/services/interceptors/LoadingInterceptor";
 import SessionInterceptor from "@/services/interceptors/SessionInterceptor";
 
 const api = axios.create({
-  baseURL: "https://my-movies-schirrel.herokuapp.com/api",
- // baseURL: "http://localhost:8080/api",
+  //baseURL: "https://my-movies-schirrel.herokuapp.com/api",
+  baseURL: "http://localhost:8080/api",
 });
 
 const ApiRequest = { api: api };
 ApiRequest.observable = new RequestObservable();
 
-StorageService.credentials().get().then((token) => {
-  ApiRequest.api.defaults.headers.Authorization = "Bearer " + token;
-  AuthorizationInterceptor(ApiRequest.api, token);
-});
-
+AuthorizationInterceptor(ApiRequest.api);
 LoadingInterceptor(ApiRequest.api, (id, remove) => {
   ApiRequest.observable.updateRequests(id, remove);
 });
 SessionInterceptor(ApiRequest.api);
-const _get = (url, params = {}) => {
-  return ApiRequest.api.get(url, { params });
+
+const _get = (url, params = {}, customOptions = {}) => {
+  return ApiRequest.api.get(url, { params, customOptions });
 };
 const _post = (url, data) => {
   return ApiRequest.api.post(url, data);
@@ -43,8 +39,8 @@ ApiRequest.createRequest = ($url) => {
     get: (_url) => {
       return _get($url + _url);
     },
-    search: (params) => {
-      return _get($url + "/search", params);
+    search: (params, options = {}) => {
+      return _get($url + "/search", params, options);
     },
     post: (_url, data) => {
       return _post($url + _url, data);

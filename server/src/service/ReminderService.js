@@ -12,7 +12,7 @@ class ReminderService extends Service {
       let result = await super.create(model);
       return result;
     } catch (err) {
-      console.log(err);
+      super.logger.log(err);
       throw {
         erro: true,
         message: err,

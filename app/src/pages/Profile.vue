@@ -134,7 +134,6 @@ export default {
       event.preventDefault();
 
       let result = await $profile.main(profile);
-      console.log(result);
       if (result.data.main) {
         this.editingAll = false;
         this.loadProfile(true);

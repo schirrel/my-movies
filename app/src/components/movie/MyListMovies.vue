@@ -1,5 +1,8 @@
 <template>
-<movies-list :data="list"></movies-list>
+  <article v-if="list.length">
+    <h3>My List</h3>
+    <movies-list :data="list" :show-watched="true"></movies-list>
+  </article>
 </template>
 
 <script>
@@ -8,33 +11,30 @@ import MoviesList from "@/components/movie/MoviesList";
 import StorageService from "@/services/StorageService";
 export default {
   name: "MyListMovies",
-    components: {
+  components: {
     "movies-list": MoviesList,
   },
   data() {
     return {
-        list:[],
-      profile: null
+      list: [],
+      profile: null,
     };
   },
-  mounted(){
+  mounted() {
     StorageService.get("my-movie-profile").then((res) => {
       this.profile = res;
       this.getList();
     });
   },
-  watch: {
-  },
+  watch: {},
   methods: {
-       getList: async function () {
-       this.list = [];
+    getList: async function () {
+      this.list = [];
       /*let data = await movies.popular();
       this.list = data.results;*/
-       let result = await $movie.list(this.profile.id);      
+      let result = await $movie.list(this.profile.id);
       this.list = result.data;
-      
-      
     },
-  }
+  },
 };
 </script>
