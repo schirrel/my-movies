@@ -42,17 +42,16 @@ class MovieService extends Service {
 	
 	}
 	async populate(list) {
-		let movies = await list.map(async (item) => {
-			let movie = await TMDBService.movies.get(item.movie);
+		let movies = await list.map(async (item) => {			
+			let movie = await TMDBService.movies.get(item.movieId);
 			return movie;
 		});
 		return await Promise.all(movies);
 	}
 	async myList(profile) {
 		let list = await super.search({ profile: profile });
+		console.log(list)
 		let movies = await this.populate(list);
-		return movies;
-
 		return movies;
 
 	}
