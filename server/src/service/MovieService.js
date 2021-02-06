@@ -43,7 +43,7 @@ class MovieService extends Service {
 	}
 	async populate(list) {
 		let movies = await list.map(async (item) => {	
-			console.log(	JSON.stringify(item));		
+			console.log(item.movie, item.title);		
 			let movie = await TMDBService.movies.get(item.movie);
 			return movie;
 		});
