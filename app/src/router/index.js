@@ -6,7 +6,7 @@ import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Logout from "@/pages/Logout";
 import Secure from "@/pages/Secure";
-import Auth from "@/services/Auth";
+import Auth from "@/services/security/Auth";
 
 Vue.use(Router);
 

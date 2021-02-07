@@ -1,5 +1,5 @@
-import StorageService from "./StorageService.js";
-import ApiRequest from "./ApiRequest";
+import StorageService from "../StorageService.js";
+import { $api } from "../ApiRequest";
 
 export default class Auth {
   /**
@@ -20,7 +20,7 @@ export default class Auth {
    * @param {Function} success
    */
   static login(credentials, success, error) {
-    return ApiRequest.api
+    return $api
       .post("/login", credentials)
       .then((response) => {
         Auth.register(response.data).then(success);
@@ -28,26 +28,15 @@ export default class Auth {
       .catch(error);
   }
 
-  static loginFake(credentials, success) {
-    this.register(Math.random().toString(36));
-    success && success();
-  }
-
   /**
    * @param {Function} success
    */
   static logout(success) {
-    return this.logoutFake(success);
-    /*return this.unregister()
-      .then(() => {
-        Request.post('/auth/logout').then(success)
-      })*/
+    return this.unregister().then(() => {
+      $api.post("/auth/logout").then(success);
+    });
   }
 
-  static logoutFake(success) {
-    this.unregister();
-    success && success();
-  }
   static guard(to, from, next) {
     if (to.meta && to.meta.loading) {
       window.Pace.start({ elements: false, document: false });

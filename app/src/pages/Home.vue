@@ -1,12 +1,14 @@
 <template>
   <div class="container">
-  <section>  
-    <my-list></my-list>
-  </section>
-    <section>  
-    <h3>Popular</h3>
-    <popular></popular>
-  </section>
+    <article>
+      <my-list></my-list>
+    </article>
+    <article>
+      <suggestions></suggestions>
+    </article>
+    <article>
+      <popular></popular>
+    </article>
   </div>
 </template>
 
@@ -14,18 +16,19 @@
 // import GenreSelect from "@/components/GenreSelect";
 import PopularMovies from "@/components/movie/PopularMovies";
 import MyListMovies from "@/components/movie/MyListMovies";
+import SuggestMovies from "@/components/movie/SuggestMovies";
 export default {
   name: "Home",
-   components: {
+  components: {
     // "genres": GenreSelect,
-    "popular": PopularMovies,
-    "my-list" : MyListMovies
+    popular: PopularMovies,
+    "my-list": MyListMovies,
+    suggestions: SuggestMovies,
   },
   data() {
     return { genre: null };
   },
-  mounted() {
-  }
+  mounted() {},
 };
 </script>
 

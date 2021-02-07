@@ -100,7 +100,7 @@
 </template>
 
 <script>
-import Auth from "../services/Auth";
+import Auth from "../services/security/Auth";
 export default {
   name: "Login",
 

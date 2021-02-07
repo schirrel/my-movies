@@ -1,5 +1,5 @@
 import Vue from "vue";
-import Auth from "@/services/Auth";
+import Auth from "@/services/security/Auth";
 
 export default function SessionInterceptor(api) {
     api.interceptors.response.use(function (response) {

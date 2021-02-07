@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import ApiRequest from "../services/ApiRequest";
+import { watchRequest } from "../services/ApiRequest";
 export default {
   name: "Loading",
   mounted() {
-    ApiRequest.watchRequest((isLoading) => {
-     this.loading = isLoading;
+    watchRequest((isLoading) => {
+      this.loading = isLoading;
     });
   },
   data() {

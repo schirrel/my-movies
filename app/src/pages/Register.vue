@@ -97,22 +97,6 @@
                   </div>
                 </div>
                 <div class="card-footer register-footer">
-                 <!--  <facebook-login
-                    class="button"
-                    appId="326022817735322"
-                    @login="getUserData"
-                    @logout="onLogout"
-                    @get-initial-status="getUserData"
-                  >
-                  </facebook-login>
-                  <button
-                    class="btn btn-info btn-icon btn-round"
-                    type="button"
-                    @click="registerWithFacebook"
-                    title="Utilizar Facebook"
-                  >
-                    <i class="fab fa-facebook-square fa-2x"></i>
-                  </button> -->
                   <button class="btn btn-info btn-round">Salvar</button>
                 </div>
               </form>
@@ -125,14 +109,9 @@
 </template>
 
 <script>
-// import facebookLogin from "facebook-login-vuejs";
-
 import { $user } from "@/services/Resources";
 export default {
   name: "Register",
-  components: {
-    // facebookLogin,
-  },
   data() {
     return {
       user: {},
@@ -144,12 +123,11 @@ export default {
       $user.post("/", this.user).then(() => {
         this.user = {};
         this.$toast.success("Usuário cadastrado com sucesso");
-        setTimeout(()=>{
-        vueInstance.$router.push({name:'login'});
-        }, 800)
+        setTimeout(() => {
+          vueInstance.$router.push({ name: "login" });
+        }, 800);
       });
     },
-    registerWIthFacebook() {},
   },
 };
 </script>

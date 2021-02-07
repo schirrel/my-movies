@@ -1,8 +1,7 @@
 
 <template>
   <nav
-    class="navbar navbar-expand-lg fixed-top navbar-transparent"
-    color-on-scroll="100"
+    class="navbar navbar-expand-sm fixed-top navbar-transparent"
   >
     <div class="container">
       <div class="navbar-translate">
@@ -57,38 +56,17 @@
           </div>
         </div>
         <ul class="navbar-nav">
-          <!-- <li class="dropdown nav-item">
-            <a
-              href="javascript:void(0)"
-              class="dropdown-toggle nav-link"
-              data-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <div class="notification d-none d-lg-block d-xl-block"></div>
-              <i class="tim-icons icon-bell-55"></i>
-              <p class="d-lg-none">Notifications</p>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-              <li class="nav-link">
-                <a href="" class="nav-item dropdown-item"
-                  >Nenhuma notificação</a
-                >
-              </li>
-            </ul>
-          </li> -->
+
           <notification :profile="profile"></notification>
           <li class="nav-item">
-            <button
-              type="button"
-              class="nav-link btn btn-default"
-              @click="openSearch"
-            >
+            <a class="nav-link" @click="openSearch">
               <i class="tim-icons icon-zoom-split"></i>
-              <span class="d-none d-lg-block d-xl-block"> Procurar </span>
-            </button>
+              <span> Procurar </span>
+            </a>
           </li>
           <li class="nav-item">
-            <router-link to="/" class="nav-link btn btn-primary">
+            <router-link to="/" class="nav-link">
+              <i class="tim-icons icon-single-02"></i>
               {{ profile ? profile.name : "" }}
             </router-link>
           </li>
@@ -153,5 +131,19 @@ export default {
 .navbar-expand-sm .navbar-nav .nav-link {
   padding-right: 1rem;
   padding-left: 1rem;
+}
+
+@media (max-width: 991px) {
+  .navbar .navbar-nav .btn {
+    padding: 0.5em;
+    margin: 0.5em;
+
+    background: transparent;
+  }
+
+  .navbar .navbar-nav li > .btn > span {
+    text-transform: inherit !important;
+    color: white !important;
+  }
 }
 </style>

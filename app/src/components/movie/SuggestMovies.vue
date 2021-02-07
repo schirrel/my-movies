@@ -1,8 +1,8 @@
 <template>
-  <article v-if="list.length">
-    <h3>Minha lista</h3>
-    <movies-list :data="list" :show-watched="true"></movies-list>
-  </article>
+  <div v-if="list">
+    <h3>Indicados para voce</h3>
+    <movies-list :data="list"></movies-list>
+  </div>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ import { $movie } from "@/services/Resources";
 import MoviesList from "@/components/movie/MoviesList";
 import StorageService from "@/services/StorageService";
 export default {
-  name: "MyListMovies",
+  name: "PopularMovies",
   components: {
     "movies-list": MoviesList,
   },
@@ -26,14 +26,14 @@ export default {
       this.getList();
     });
   },
-  watch: {},
+  watch: {
+    value() {},
+  },
   methods: {
     getList: async function () {
-      this.list = [];
-      /*let data = await movies.popular();
-      this.list = data.results;*/
-      let result = await $movie.list(this.profile.id);
-      this.list = result.data;
+      let response = await $movie.suggestion(this.profile.id);
+      console.log(response.data.results);
+      this.list = response.data.results;
     },
   },
 };
