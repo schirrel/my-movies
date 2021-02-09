@@ -83,15 +83,7 @@
                   </div>
                 </div>
                 <div class="card-footer text-right">
-                  <div
-                    class="fb-login-button"
-                    data-width=""
-                    data-size="large"
-                    data-button-type="continue_with"
-                    data-layout="default"
-                    data-auto-logout-link="false"
-                    data-use-continue-as="false"
-                  ></div>
+
                   <button class="btn btn-info btn-round btn-lg">Acessar</button>
                 </div>
               </form>
