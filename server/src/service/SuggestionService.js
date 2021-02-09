@@ -1,40 +1,46 @@
-const TMDBService = require('./TMDBService');
-const MovieService = require('./MovieService');
+const TMDBService = require("./TMDBService");
+const MovieService = require("./MovieService");
 const movieService = new MovieService();
-
+const arrayUtils = require("../utils/arrays");
 
 const getMoviesFromSameGenres = async (genres) => {
-    let suggestions = [];
-   /* genres.forEach(async (genre) => {
+  let suggestions = [];
+  /* genres.forEach(async (genre) => {
         let suggest = await TMDBService.movies.byGenre(genre, 3);
         suggestions.push(suggest);
     });
     
     let result = await Promise.allSettled(suggestions);*/
-    
-    let suggest = await TMDBService.movies.byGenre(genres);
-    return result;
-}
+
+  let suggest = await TMDBService.movies.byGenre(genres);
+  return suggest;
+};
 
 const flatten = async (userList) => {
-    let genres = userList.map((movie) => {
-        return Array.from(movie.genres);
-    });
-    genres = genres.flat();
-    genres = genres.sort();
+  let genres = userList.map((movie) => {
+    let genres = movie.genres;
+    if (genres) {
+      genres = genres.replace("{", "[");
+      genres = genres.replace("}", "]");
 
-    /*const genres = [...new Set(userList.map((movie)=>{
-    return Array.from(movie.genres);
-    }).flat().sort())];*/
-    return [...new Set(genres)];
-}
-
+      return Array.from(JSON.parse(genres));
+    }
+    return null;
+  });
+  genres = arrayUtils.flatten(genres);
+  genres = genres.sort();
+  return [...new Set(genres)];
+};
 
 const getSuggestion = async (profile) => {
-    let userList = await movieService.myList(profile);
-    let flattenGenres = flatten(userList);
-    let movies = await getMoviesFromSameGenres(flattenGenres);
-    return movies;
-}
+  let userList = await movieService.search({ profile: profile });
+  let flattenGenres = await flatten(userList);
+  let genres = flattenGenres.filter((v) => {
+    return v && parseInt(v);
+  });
+  genres = genres.join(",");
+  let movies = await getMoviesFromSameGenres(genres);
+  return movies;
+};
 
 module.exports = getSuggestion;

@@ -24,7 +24,7 @@ router.get('/search', async (req, res) => {
 	res.send(list);
 	return;
 });
-router.put('/main/:id', async (req, res) => {
+router.put('/:id/main', async (req, res) => {
 	try {
 		let entity = await this.service.main(req);
 		res.send(entity);
